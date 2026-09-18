@@ -25,6 +25,7 @@ export default function RfqsInboxPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [selectedRfq, setSelectedRfq] = useState<any | null>(null);
+  const [isMobileModalOpen, setIsMobileModalOpen] = useState(false);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
   const fetchRfqs = async () => {
@@ -34,7 +35,7 @@ export default function RfqsInboxPage() {
       const data = await res.json();
       if (data.success) {
         setRfqs(data.data);
-        if (data.data.length > 0 && !selectedRfq) {
+        if (typeof window !== 'undefined' && window.innerWidth >= 1024 && data.data.length > 0 && !selectedRfq) {
           setSelectedRfq(data.data[0]);
         }
       }
@@ -71,6 +72,7 @@ export default function RfqsInboxPage() {
       setDeleteConfirmId(null);
       if (selectedRfq && selectedRfq.id === id) {
         setSelectedRfq(null);
+        setIsMobileModalOpen(false);
       }
       fetchRfqs();
     } catch (err) {
@@ -158,7 +160,10 @@ export default function RfqsInboxPage() {
               return (
                 <div
                   key={rfq.id}
-                  onClick={() => setSelectedRfq(rfq)}
+                  onClick={() => {
+                    setSelectedRfq(rfq);
+                    setIsMobileModalOpen(true);
+                  }}
                   className={`bg-[#15181e] border rounded-2xl p-4 transition-colors cursor-pointer ${
                     isSelected ? 'border-[#8bc34a] bg-[#1a1e26]' : 'border-[#222630] hover:border-stone-600'
                   }`}
@@ -365,7 +370,7 @@ export default function RfqsInboxPage() {
       )}
 
       {/* Mobile Details Modal / Bottom Sheet */}
-      {selectedRfq && (
+      {isMobileModalOpen && selectedRfq && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 lg:hidden animate-in fade-in duration-200">
           <div className="bg-[#15181e] border border-[#222630] rounded-t-3xl sm:rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-5 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-[#222630]">
@@ -380,7 +385,7 @@ export default function RfqsInboxPage() {
                 )}
               </div>
               <button
-                onClick={() => setSelectedRfq(null)}
+                onClick={() => setIsMobileModalOpen(false)}
                 className="p-1.5 rounded-lg bg-[#101217] text-stone-400 hover:text-white border border-[#222630]"
               >
                 <X className="w-4 h-4" />
