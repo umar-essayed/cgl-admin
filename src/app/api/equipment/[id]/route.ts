@@ -1,0 +1,64 @@
+import { NextResponse } from 'next/server';
+import { getAdminFirestore } from '@/lib/firebaseAdmin';
+import { requireAuth } from '@/lib/apiAuth';
+
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const db = getAdminFirestore();
+    const doc = await db.collection('equipment').doc(id).get();
+    if (!doc.exists) {
+      return NextResponse.json({ success: false, message: 'المعدة غير موجودة' }, { status: 404 });
+    }
+    return NextResponse.json({ success: true, data: { id: doc.id, ...doc.data() } });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  }
+}
+
+export async function PUT(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    if (!(await requireAuth())) {
+      return NextResponse.json({ success: false, message: 'غير مصرح بالوصول' }, { status: 401 });
+    }
+
+    const { id } = await params;
+    const body = await request.json();
+    const db = getAdminFirestore();
+    const docRef = db.collection('equipment').doc(id);
+
+    const updated = {
+      ...body,
+      updatedAt: new Date().toISOString()
+    };
+
+    await docRef.set(updated, { merge: true });
+    return NextResponse.json({ success: true, data: { id, ...updated } });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    if (!(await requireAuth())) {
+      return NextResponse.json({ success: false, message: 'غير مصرح بالوصول' }, { status: 401 });
+    }
+
+    const { id } = await params;
+    const db = getAdminFirestore();
+    await db.collection('equipment').doc(id).delete();
+    return NextResponse.json({ success: true, message: 'تم حذف المعدة بنجاح' });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  }
+}

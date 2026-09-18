@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60" fill="none">
+  <path d="M16 18H30C35 18 38 21 38 25C38 28.5 35.5 31 32 31.8L39 42H32L26 32.5H22V42H16V18ZM22 27.5H29C31.5 27.5 33 26.5 33 25C33 23.5 31.5 22.5 29 22.5H22V27.5Z" fill="#C5A880"/>
+  <text x="48" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#0f172a" letter-spacing="3">ROSHN</text>
+  <text x="145" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#C5A880">روشن</text>
+</svg>

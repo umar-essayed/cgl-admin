@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="60" viewBox="0 0 220 60" fill="none">
+  <rect x="12" y="16" width="28" height="28" rx="4" fill="#0A3B66"/>
+  <path d="M18 38L26 22L34 38H29.5L26 30L22.5 38H18Z" fill="#FFFFFF"/>
+  <text x="48" y="31" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF" letter-spacing="1">EL SEIF</text>
+  <text x="48" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" fill="#8899A6" letter-spacing="1.5">ENGINEERING CONTRACTING</text>
+</svg>

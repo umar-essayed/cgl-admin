@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="60" viewBox="0 0 220 60" fill="none">
+  <rect x="14" y="16" width="28" height="28" rx="4" fill="#8B1D2C"/>
+  <path d="M22 38V22H28C32 22 34 24 34 27C34 29 33 30 31.5 30.5C33.5 31 35 32.5 35 35C35 37.5 33 38 29 38H22ZM25 25.5V28.5H28C29.5 28.5 30.5 28 30.5 27C30.5 26 29.5 25.5 28 25.5H25ZM25 31.5V35H29C30.5 35 31.5 34.5 31.5 33.2C31.5 32 30.5 31.5 29 31.5H25Z" fill="#FFFFFF"/>
+  <text x="50" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#8B1D2C" letter-spacing="1">AL BAWANI</text>
+  <text x="50" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" fill="#475569" letter-spacing="1.5">HOLDING GROUP</text>
+</svg>

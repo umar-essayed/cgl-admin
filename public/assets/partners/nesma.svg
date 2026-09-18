@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60" fill="none">
+  <circle cx="28" cy="30" r="14" fill="#006633"/>
+  <path d="M22 30L26 23H32L28 37H22L26 30Z" fill="#FFFFFF"/>
+  <text x="50" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">NESMA</text>
+  <text x="50" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" fill="#88B098" letter-spacing="1">&amp; PARTNERS</text>
+</svg>
