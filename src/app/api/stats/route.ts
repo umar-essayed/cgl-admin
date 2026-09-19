@@ -10,12 +10,13 @@ export async function GET() {
 
     const db = getAdminFirestore();
 
-    const [projectsSnap, equipmentSnap, newsSnap, partnersSnap, rfqsSnap, settingsDoc] = await Promise.all([
+    const [projectsSnap, equipmentSnap, newsSnap, partnersSnap, rfqsSnap, servicesSnap, settingsDoc] = await Promise.all([
       db.collection('projects').get(),
       db.collection('equipment').get(),
       db.collection('news').get(),
       db.collection('partners').get(),
       db.collection('rfq_requests').get(),
+      db.collection('services').get(),
       db.collection('settings').doc('company_info').get()
     ]);
 
@@ -42,12 +43,13 @@ export async function GET() {
         totalEquipment: equipmentSnap.size,
         totalNews: newsSnap.size,
         totalPartners: partnersSnap.size,
+        totalServices: servicesSnap.size,
         totalRfqs: rfqsSnap.size,
         newRfqsCount,
         equipmentCategories,
         recentRfqs,
         companyStats: settings?.stats || { globalPartners: 650, innovativeSolutions: 300, yearsOfGrowth: 20 },
-        firestoreConnected: true,
+        systemConnected: true,
         lastChecked: new Date().toISOString()
       }
     });

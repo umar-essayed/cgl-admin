@@ -1,4 +1,5 @@
 'use client';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 import React, { useEffect, useState } from 'react';
 import { 
@@ -210,7 +211,7 @@ export default function NewsManagementPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-stone-100 flex items-center gap-2.5">
-            <Newspaper className="w-5 h-5 text-[#8bc34a]" />
+            <Newspaper className="w-5 h-5 text-[#3b76b3]" />
             <span>الأخبار والمقالات والبيانات الهندسية</span>
           </h2>
           <p className="text-xs text-stone-400 mt-1">
@@ -220,7 +221,7 @@ export default function NewsManagementPage() {
 
         <button
           onClick={openNewModal}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold transition-all active:scale-95 shadow-sm"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold transition-all active:scale-95 shadow-sm"
         >
           <Plus className="w-4 h-4" />
           <span>إضافة مقال جديد</span>
@@ -236,16 +237,14 @@ export default function NewsManagementPage() {
             placeholder="البحث بعنوان الخبر، التصنيف، أو الكلمات الدلالية..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-9 pl-4 py-2 text-xs text-stone-200 placeholder-stone-400 focus:outline-none focus:border-[#8bc34a]"
+            className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-9 pl-4 py-2 text-xs text-stone-200 placeholder-stone-400 focus:outline-none focus:border-[#3b76b3]"
           />
         </div>
       </div>
 
       {/* Articles Grid */}
       {loading ? (
-        <div className="py-24 text-center text-xs text-stone-400 font-mono">
-          جاري استرجاع المقالات من Firestore...
-        </div>
+        <LoadingSpinner label="جاري استرجاع الأخبار والمقالات..." />
       ) : filteredArticles.length === 0 ? (
         <div className="py-20 text-center text-stone-400 text-xs bg-[#15181e] rounded-2xl border border-[#222630]">
           لا توجد مقالات أو أخبار مطابقة لمعايير البحث
@@ -294,12 +293,12 @@ export default function NewsManagementPage() {
                 <div className="p-4 space-y-2.5">
                   <div className="flex items-center gap-3 text-[10px] font-mono text-stone-400">
                     <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3 text-[#8bc34a]" />
+                      <Calendar className="w-3 h-3 text-[#3b76b3]" />
                       <span>{article.dateAr || article.date}</span>
                     </span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3 text-[#8bc34a]" />
+                      <Clock className="w-3 h-3 text-[#3b76b3]" />
                       <span>{article.readTimeAr || `${article.readMinutes || 3} دقائق قراءة`}</span>
                     </span>
                   </div>
@@ -316,7 +315,7 @@ export default function NewsManagementPage() {
 
               {/* Actions Footer */}
               <div className="p-4 pt-3 border-t border-[#222630] flex items-center justify-between text-xs">
-                <span className="text-[11px] font-mono text-[#8bc34a] bg-[#8bc34a]/10 px-2 py-0.5 rounded">
+                <span className="text-[11px] font-mono text-[#3b76b3] bg-[#3b76b3]/10 px-2 py-0.5 rounded">
                   ⏱️ {article.readMinutes || parseInt(article.readTimeAr) || 3} دقيقة قراءة
                 </span>
 
@@ -379,7 +378,7 @@ export default function NewsManagementPage() {
             <div className="p-4 sm:p-5 border-b border-[#222630] flex items-center justify-between">
               <div>
                 <h3 className="font-bold text-sm sm:text-base text-white flex items-center gap-2">
-                  <Newspaper className="w-4 h-4 sm:w-5 sm:h-5 text-[#8bc34a]" />
+                  <Newspaper className="w-4 h-4 sm:w-5 sm:h-5 text-[#3b76b3]" />
                   <span>{isEditing ? 'تعديل بيانات المقال' : 'إضافة مقال وخبر جديد'}</span>
                 </h3>
                 <p className="text-[11px] text-stone-400 font-mono mt-0.5">{formData.id}</p>
@@ -399,7 +398,7 @@ export default function NewsManagementPage() {
                 onClick={() => setActiveTab('ar')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'ar'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -410,7 +409,7 @@ export default function NewsManagementPage() {
                 onClick={() => setActiveTab('en')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'en'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -421,7 +420,7 @@ export default function NewsManagementPage() {
                 onClick={() => setActiveTab('media')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'media'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -445,7 +444,7 @@ export default function NewsManagementPage() {
                       value={formData.titleAr}
                       onChange={(e) => setFormData({ ...formData, titleAr: e.target.value })}
                       placeholder="مثال: مختبرات CGL تطبق الاشتراطات المحدثة لكود البناء السعودي"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -460,7 +459,7 @@ export default function NewsManagementPage() {
                         value={formData.categoryAr}
                         onChange={(e) => setFormData({ ...formData, categoryAr: e.target.value })}
                         placeholder="مثال: كود البناء واللوائح"
-                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                       />
                     </div>
 
@@ -473,7 +472,7 @@ export default function NewsManagementPage() {
                         value={formData.authorAr}
                         onChange={(e) => setFormData({ ...formData, authorAr: e.target.value })}
                         placeholder="مثال: المكتب الفني لمختبرات CGL"
-                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                       />
                     </div>
                   </div>
@@ -488,7 +487,7 @@ export default function NewsManagementPage() {
                       value={formData.excerptAr}
                       onChange={(e) => setFormData({ ...formData, excerptAr: e.target.value })}
                       placeholder="ملخص قصير من سطرين يوضح فكرة المقال..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -496,10 +495,10 @@ export default function NewsManagementPage() {
                   <div className="p-3.5 bg-[#101217] border border-[#222630] rounded-xl flex items-center justify-between">
                     <div>
                       <label className="block text-xs font-semibold text-stone-200 mb-0.5 flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-[#8bc34a]" />
+                        <Clock className="w-3.5 h-3.5 text-[#3b76b3]" />
                         <span>وقت القراءة التقديري:</span>
                       </label>
-                      <p className="text-[11px] text-[#8bc34a] font-mono">
+                      <p className="text-[11px] text-[#3b76b3] font-mono">
                         {formData.readTimeAr}
                       </p>
                     </div>
@@ -518,7 +517,7 @@ export default function NewsManagementPage() {
                         max={120}
                         value={formData.readMinutes || 3}
                         onChange={(e) => handleMinutesChange(parseInt(e.target.value) || 1)}
-                        className="w-14 bg-[#15181e] border border-[#222630] rounded-lg py-1.5 text-center font-mono font-bold text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                        className="w-14 bg-[#15181e] border border-[#222630] rounded-lg py-1.5 text-center font-mono font-bold text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                       />
                       <button
                         type="button"
@@ -542,7 +541,7 @@ export default function NewsManagementPage() {
                       value={formData.contentAr}
                       onChange={(e) => setFormData({ ...formData, contentAr: e.target.value })}
                       placeholder="اكتب هنا المقال التفصيلي الكامل الذي سيظهر للزائر عند الضغط على قراءة الخبر..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white leading-relaxed focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white leading-relaxed focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
                 </div>
@@ -561,7 +560,7 @@ export default function NewsManagementPage() {
                       value={formData.titleEn}
                       onChange={(e) => setFormData({ ...formData, titleEn: e.target.value })}
                       placeholder="e.g. CGL Laboratories Upgrades Geotechnical Standards Aligned with SBC"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -576,7 +575,7 @@ export default function NewsManagementPage() {
                         value={formData.categoryEn}
                         onChange={(e) => setFormData({ ...formData, categoryEn: e.target.value })}
                         placeholder="e.g. Building Code & Standards"
-                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                       />
                     </div>
 
@@ -589,7 +588,7 @@ export default function NewsManagementPage() {
                         value={formData.authorEn}
                         onChange={(e) => setFormData({ ...formData, authorEn: e.target.value })}
                         placeholder="e.g. CGL Technical Advisory Team"
-                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                       />
                     </div>
                   </div>
@@ -604,7 +603,7 @@ export default function NewsManagementPage() {
                       value={formData.excerptEn}
                       onChange={(e) => setFormData({ ...formData, excerptEn: e.target.value })}
                       placeholder="Two-line summary displayed on the outer article card..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -612,10 +611,10 @@ export default function NewsManagementPage() {
                   <div className="p-3.5 bg-[#101217] border border-[#222630] rounded-xl flex items-center justify-between" dir="ltr">
                     <div>
                       <label className="block text-xs font-semibold text-stone-200 mb-0.5 flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-[#8bc34a]" />
+                        <Clock className="w-3.5 h-3.5 text-[#3b76b3]" />
                         <span>Estimated Reading Time:</span>
                       </label>
-                      <p className="text-[11px] text-[#8bc34a] font-mono">
+                      <p className="text-[11px] text-[#3b76b3] font-mono">
                         {formData.readTimeEn}
                       </p>
                     </div>
@@ -634,7 +633,7 @@ export default function NewsManagementPage() {
                         max={120}
                         value={formData.readMinutes || 3}
                         onChange={(e) => handleMinutesChange(parseInt(e.target.value) || 1)}
-                        className="w-14 bg-[#15181e] border border-[#222630] rounded-lg py-1.5 text-center font-mono font-bold text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                        className="w-14 bg-[#15181e] border border-[#222630] rounded-lg py-1.5 text-center font-mono font-bold text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                       />
                       <button
                         type="button"
@@ -658,7 +657,7 @@ export default function NewsManagementPage() {
                       value={formData.contentEn}
                       onChange={(e) => setFormData({ ...formData, contentEn: e.target.value })}
                       placeholder="Write the full detailed article content shown when user clicks Read Article..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white leading-relaxed focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white leading-relaxed focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
                 </div>
@@ -680,7 +679,7 @@ export default function NewsManagementPage() {
                     {/* Read Time with stepper */}
                     <div className="p-3.5 rounded-xl bg-[#101217] border border-[#222630]">
                       <label className="block text-xs font-bold text-stone-200 mb-2 flex items-center gap-1.5">
-                        <Clock className="w-4 h-4 text-[#8bc34a]" />
+                        <Clock className="w-4 h-4 text-[#3b76b3]" />
                         <span>وقت القراءة المقدر:</span>
                       </label>
                       <div className="flex items-center gap-2">
@@ -698,7 +697,7 @@ export default function NewsManagementPage() {
                           max={120}
                           value={formData.readMinutes || 3}
                           onChange={(e) => handleMinutesChange(parseInt(e.target.value) || 1)}
-                          className="w-14 bg-[#15181e] border border-[#222630] rounded-lg py-1.5 text-center font-mono font-bold text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                          className="w-14 bg-[#15181e] border border-[#222630] rounded-lg py-1.5 text-center font-mono font-bold text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                         />
                         <button
                           type="button"
@@ -711,7 +710,7 @@ export default function NewsManagementPage() {
                         <span className="text-xs text-stone-400 font-mono pr-1">دقائق / min</span>
                       </div>
                       <div className="flex flex-wrap items-center gap-2 mt-2.5 text-[11px] font-mono">
-                        <span className="text-[#8bc34a] bg-[#8bc34a]/10 px-2 py-0.5 rounded border border-[#8bc34a]/20">🇸🇦 {formData.readTimeAr}</span>
+                        <span className="text-[#3b76b3] bg-[#3b76b3]/10 px-2 py-0.5 rounded border border-[#3b76b3]/20">🇸🇦 {formData.readTimeAr}</span>
                         <span className="text-sky-400 bg-sky-400/10 px-2 py-0.5 rounded border border-sky-400/20">🇬🇧 {formData.readTimeEn}</span>
                       </div>
                     </div>
@@ -719,7 +718,7 @@ export default function NewsManagementPage() {
                     {/* Publication Date */}
                     <div className="p-3.5 rounded-xl bg-[#101217] border border-[#222630]">
                       <label className="block text-xs font-bold text-stone-200 mb-1.5 flex items-center gap-1.5">
-                        <Calendar className="w-4 h-4 text-[#8bc34a]" />
+                        <Calendar className="w-4 h-4 text-[#3b76b3]" />
                         <span>تاريخ النشر:</span>
                       </label>
                       <input
@@ -727,7 +726,7 @@ export default function NewsManagementPage() {
                         required
                         value={formData.date}
                         onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        className="w-full bg-[#15181e] border border-[#222630] rounded-lg px-3 py-2 text-xs text-stone-200 font-mono focus:outline-none focus:border-[#8bc34a]"
+                        className="w-full bg-[#15181e] border border-[#222630] rounded-lg px-3 py-2 text-xs text-stone-200 font-mono focus:outline-none focus:border-[#3b76b3]"
                       />
                     </div>
                   </div>
@@ -739,7 +738,7 @@ export default function NewsManagementPage() {
                         type="checkbox"
                         checked={formData.featured}
                         onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
-                        className="w-4 h-4 rounded bg-[#15181e] border-[#222630] text-[#8bc34a] focus:ring-0"
+                        className="w-4 h-4 rounded bg-[#15181e] border-[#222630] text-[#3b76b3] focus:ring-0"
                       />
                       <div>
                         <span className="text-xs text-stone-100 font-semibold block">
@@ -760,7 +759,7 @@ export default function NewsManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('ar')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'ar' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'ar' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     1. عربي
                   </button>
@@ -768,7 +767,7 @@ export default function NewsManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('en')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'en' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'en' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     2. English
                   </button>
@@ -776,7 +775,7 @@ export default function NewsManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('media')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'media' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'media' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     3. الوسائط
                   </button>
@@ -794,7 +793,7 @@ export default function NewsManagementPage() {
                   <button
                     type="submit"
                     disabled={saving}
-                    className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold disabled:opacity-50 active:scale-95"
+                    className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold disabled:opacity-50 active:scale-95"
                   >
                     {saving ? (
                       <div className="w-3.5 h-3.5 border-2 border-black border-t-transparent rounded-full animate-spin" />

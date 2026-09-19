@@ -1,4 +1,5 @@
 'use client';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 import React, { useEffect, useState } from 'react';
 import { 
@@ -167,7 +168,7 @@ export default function EquipmentManagementPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-stone-100 flex items-center gap-2.5">
-            <Truck className="w-5 h-5 text-[#8bc34a]" />
+            <Truck className="w-5 h-5 text-[#3b76b3]" />
             <span>أسطول المعدات والآليات الهندسية</span>
           </h2>
           <p className="text-xs text-stone-400 mt-1">
@@ -177,7 +178,7 @@ export default function EquipmentManagementPage() {
 
         <button
           onClick={openNewModal}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold transition-all active:scale-95 shadow-sm"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold transition-all active:scale-95 shadow-sm"
         >
           <Plus className="w-4 h-4" />
           <span>إضافة معدة للأسطول</span>
@@ -193,7 +194,7 @@ export default function EquipmentManagementPage() {
             placeholder="البحث باسم الآلية أو الرمز الكودي (مثال: CGL-EQ-100)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-9 pl-4 py-2 text-xs text-stone-200 placeholder-stone-400 focus:outline-none focus:border-[#8bc34a]"
+            className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-9 pl-4 py-2 text-xs text-stone-200 placeholder-stone-400 focus:outline-none focus:border-[#3b76b3]"
           />
         </div>
 
@@ -222,9 +223,7 @@ export default function EquipmentManagementPage() {
 
       {/* Equipment Cards */}
       {loading ? (
-        <div className="py-24 text-center text-xs text-stone-400 font-mono">
-          جاري مزامنة بيانات الأسطول من Firestore...
-        </div>
+        <LoadingSpinner label="جاري استرجاع أسطول المعدات..." />
       ) : filteredEquipment.length === 0 ? (
         <div className="py-20 text-center text-stone-400 text-xs bg-[#15181e] rounded-2xl border border-[#222630]">
           لم يتم العثور على أي معدات مطابقة للبحث
@@ -273,7 +272,7 @@ export default function EquipmentManagementPage() {
                   <ul className="space-y-1 pt-1">
                     {eq.specsAr.slice(0, 2).map((spec: string, idx: number) => (
                       <li key={idx} className="text-[11px] text-stone-400 flex items-start gap-1.5 leading-tight">
-                        <span className="text-[#8bc34a] font-bold">•</span>
+                        <span className="text-[#3b76b3] font-bold">•</span>
                         <span className="truncate">{spec}</span>
                       </li>
                     ))}
@@ -346,7 +345,7 @@ export default function EquipmentManagementPage() {
             <div className="p-4 sm:p-5 border-b border-[#222630] flex items-center justify-between">
               <div>
                 <h3 className="font-bold text-sm sm:text-base text-white flex items-center gap-2">
-                  <Truck className="w-4 h-4 sm:w-5 sm:h-5 text-[#8bc34a]" />
+                  <Truck className="w-4 h-4 sm:w-5 sm:h-5 text-[#3b76b3]" />
                   <span>{isEditing ? 'تعديل بيانات الآلية الهندسية' : 'إضافة معدة للأسطول'}</span>
                 </h3>
                 <p className="text-[11px] text-stone-400 font-mono mt-0.5">{formData.id}</p>
@@ -366,7 +365,7 @@ export default function EquipmentManagementPage() {
                 onClick={() => setActiveTab('ar')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'ar'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -377,7 +376,7 @@ export default function EquipmentManagementPage() {
                 onClick={() => setActiveTab('en')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'en'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -388,7 +387,7 @@ export default function EquipmentManagementPage() {
                 onClick={() => setActiveTab('tech')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'tech'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -412,7 +411,7 @@ export default function EquipmentManagementPage() {
                       value={formData.nameAr}
                       onChange={(e) => setFormData({ ...formData, nameAr: e.target.value })}
                       placeholder="مثال: حفارة الجسات الهيدروليكية الدوارة المجنزرة"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -425,7 +424,7 @@ export default function EquipmentManagementPage() {
                       value={formData.categoryNameAr}
                       onChange={(e) => setFormData({ ...formData, categoryNameAr: e.target.value })}
                       placeholder="مثال: حفر الجسات واستكشاف التربة"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -438,7 +437,7 @@ export default function EquipmentManagementPage() {
                       value={formData.descriptionAr}
                       onChange={(e) => setFormData({ ...formData, descriptionAr: e.target.value })}
                       placeholder="وحدة حفر دوارة متقدمة لأخذ العينات اللبية وأعماق استكشاف حتى 80 متراً..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -452,7 +451,7 @@ export default function EquipmentManagementPage() {
                       value={formData.specsArText}
                       onChange={(e) => setFormData({ ...formData, specsArText: e.target.value })}
                       placeholder="أعماق حفر تصل إلى 60 متراً&#10;أخذ عينات أسطوانية مقلقلة وغير مقلقلة&#10;نظام قياس عزم هيدروليكي"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
                 </div>
@@ -471,7 +470,7 @@ export default function EquipmentManagementPage() {
                       value={formData.nameEn}
                       onChange={(e) => setFormData({ ...formData, nameEn: e.target.value })}
                       placeholder="e.g. Hydraulic Rotary Crawler Core Drilling Rig"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -484,7 +483,7 @@ export default function EquipmentManagementPage() {
                       value={formData.categoryNameEn}
                       onChange={(e) => setFormData({ ...formData, categoryNameEn: e.target.value })}
                       placeholder="e.g. Drilling & Subsurface Exploration"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -497,7 +496,7 @@ export default function EquipmentManagementPage() {
                       value={formData.descriptionEn}
                       onChange={(e) => setFormData({ ...formData, descriptionEn: e.target.value })}
                       placeholder="Heavy rotary core drilling rig capable of deep rock exploration up to 80m..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -511,7 +510,7 @@ export default function EquipmentManagementPage() {
                       value={formData.specsEnText}
                       onChange={(e) => setFormData({ ...formData, specsEnText: e.target.value })}
                       placeholder="Drilling depths up to 60m&#10;Continuous rock coring and SPT sampling&#10;Hydraulic torque control system"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
                 </div>
@@ -545,7 +544,7 @@ export default function EquipmentManagementPage() {
                         value={formData.code}
                         onChange={(e) => setFormData({ ...formData, code: e.target.value })}
                         placeholder="مثال: CGL-EQ-101"
-                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-stone-200 font-mono focus:outline-none focus:border-[#8bc34a]"
+                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-stone-200 font-mono focus:outline-none focus:border-[#3b76b3]"
                       />
                     </div>
                   </div>
@@ -571,7 +570,7 @@ export default function EquipmentManagementPage() {
                           categoryNameEn: catNames[val]?.en || val
                         });
                       }}
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-stone-200 focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-stone-200 focus:outline-none focus:border-[#3b76b3]"
                     >
                       <option value="drilling">حفر الجسات واستكشاف التربة (Drilling)</option>
                       <option value="materials">فحص الخرسانة والمواد الإنشائية (Materials)</option>
@@ -589,7 +588,7 @@ export default function EquipmentManagementPage() {
                       value={formData.standardsText}
                       onChange={(e) => setFormData({ ...formData, standardsText: e.target.value })}
                       placeholder="مثال: ASTM D1586, SBC 303, AASHTO T206"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-stone-200 font-mono focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-stone-200 font-mono focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -610,7 +609,7 @@ export default function EquipmentManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('ar')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'ar' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'ar' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     1. عربي
                   </button>
@@ -618,7 +617,7 @@ export default function EquipmentManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('en')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'en' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'en' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     2. English
                   </button>
@@ -626,7 +625,7 @@ export default function EquipmentManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('tech')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'tech' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'tech' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     3. المواصفات
                   </button>
@@ -644,7 +643,7 @@ export default function EquipmentManagementPage() {
                   <button
                     type="submit"
                     disabled={saving}
-                    className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold disabled:opacity-50 active:scale-95"
+                    className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold disabled:opacity-50 active:scale-95"
                   >
                     {saving ? (
                       <div className="w-3.5 h-3.5 border-2 border-black border-t-transparent rounded-full animate-spin" />

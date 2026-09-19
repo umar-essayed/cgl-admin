@@ -1,4 +1,5 @@
 'use client';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 import React, { useEffect, useState } from 'react';
 import { 
@@ -152,7 +153,7 @@ export default function PartnersManagementPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-stone-100 flex items-center gap-2.5">
-            <Building2 className="w-5 h-5 text-[#8bc34a]" />
+            <Building2 className="w-5 h-5 text-[#3b76b3]" />
             <span>شركاء النجاح والعملاء المعتمدون</span>
           </h2>
           <p className="text-xs text-stone-400 mt-1">
@@ -162,7 +163,7 @@ export default function PartnersManagementPage() {
 
         <button
           onClick={openNewModal}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold transition-all active:scale-95 shadow-sm"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold transition-all active:scale-95 shadow-sm"
         >
           <Plus className="w-4 h-4" />
           <span>إضافة شريك جديد</span>
@@ -178,16 +179,14 @@ export default function PartnersManagementPage() {
             placeholder="البحث باسم الشريك، القطاع، أو نطاق التعاون..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-9 pl-4 py-2 text-xs text-stone-200 placeholder-stone-400 focus:outline-none focus:border-[#8bc34a]"
+            className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-9 pl-4 py-2 text-xs text-stone-200 placeholder-stone-400 focus:outline-none focus:border-[#3b76b3]"
           />
         </div>
       </div>
 
       {/* Partners Grid */}
       {loading ? (
-        <div className="py-24 text-center text-xs text-stone-400 font-mono">
-          جاري استرجاع قائمة الشركاء من Firestore...
-        </div>
+        <LoadingSpinner label="جاري استرجاع قائمة الشركاء والعملاء..." />
       ) : filteredPartners.length === 0 ? (
         <div className="py-20 text-center text-stone-400 text-xs bg-[#15181e] rounded-2xl border border-[#222630]">
           لا يوجد شركاء يطابقون معايير البحث
@@ -290,7 +289,7 @@ export default function PartnersManagementPage() {
             <div className="p-4 sm:p-5 border-b border-[#222630] flex items-center justify-between">
               <div>
                 <h3 className="font-bold text-sm sm:text-base text-white flex items-center gap-2">
-                  <Building2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#8bc34a]" />
+                  <Building2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#3b76b3]" />
                   <span>{isEditing ? 'تعديل بيانات الشريك' : 'إضافة شريك نجاح جديد'}</span>
                 </h3>
                 <p className="text-[11px] text-stone-400 font-mono mt-0.5">{formData.id}</p>
@@ -310,7 +309,7 @@ export default function PartnersManagementPage() {
                 onClick={() => setActiveTab('ar')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'ar'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -321,7 +320,7 @@ export default function PartnersManagementPage() {
                 onClick={() => setActiveTab('en')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'en'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -332,7 +331,7 @@ export default function PartnersManagementPage() {
                 onClick={() => setActiveTab('logo')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'logo'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -356,7 +355,7 @@ export default function PartnersManagementPage() {
                       value={formData.nameAr}
                       onChange={(e) => setFormData({ ...formData, nameAr: e.target.value })}
                       placeholder="مثال: مجموعة بن لادن السعودية"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -370,7 +369,7 @@ export default function PartnersManagementPage() {
                       value={formData.sectorAr}
                       onChange={(e) => setFormData({ ...formData, sectorAr: e.target.value })}
                       placeholder="مثال: الإنشاءات الكبرى والمطارات والبنية التحتية"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -383,7 +382,7 @@ export default function PartnersManagementPage() {
                       value={formData.collaborationScopeAr}
                       onChange={(e) => setFormData({ ...formData, collaborationScopeAr: e.target.value })}
                       placeholder="مثال: فحوصات استكشاف التربة واختبارات الخوازيق الاستاتيكية"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -396,7 +395,7 @@ export default function PartnersManagementPage() {
                       value={formData.badgeAr}
                       onChange={(e) => setFormData({ ...formData, badgeAr: e.target.value })}
                       placeholder="مثال: مقاول معتمد Tier-1 أو عميل استراتيجي"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
                 </div>
@@ -415,7 +414,7 @@ export default function PartnersManagementPage() {
                       value={formData.nameEn}
                       onChange={(e) => setFormData({ ...formData, nameEn: e.target.value })}
                       placeholder="e.g. Saudi Binladin Group"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -429,7 +428,7 @@ export default function PartnersManagementPage() {
                       value={formData.sectorEn}
                       onChange={(e) => setFormData({ ...formData, sectorEn: e.target.value })}
                       placeholder="e.g. Heavy Infrastructure & Airports"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -442,7 +441,7 @@ export default function PartnersManagementPage() {
                       value={formData.collaborationScopeEn}
                       onChange={(e) => setFormData({ ...formData, collaborationScopeEn: e.target.value })}
                       placeholder="e.g. Geotechnical investigation & pile load testing"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -455,7 +454,7 @@ export default function PartnersManagementPage() {
                       value={formData.badgeEn}
                       onChange={(e) => setFormData({ ...formData, badgeEn: e.target.value })}
                       placeholder="e.g. Tier-1 Contractor or Strategic Client"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
                 </div>
@@ -471,7 +470,7 @@ export default function PartnersManagementPage() {
                     <select
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-stone-200 focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-stone-200 focus:outline-none focus:border-[#3b76b3]"
                     >
                       <option value="contractor">شركات مقاولات وإنشاءات كبرى (Contractor)</option>
                       <option value="government">جهات وهيئات حكومية (Government)</option>
@@ -497,7 +496,7 @@ export default function PartnersManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('ar')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'ar' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'ar' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     1. عربي
                   </button>
@@ -505,7 +504,7 @@ export default function PartnersManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('en')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'en' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'en' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     2. English
                   </button>
@@ -513,7 +512,7 @@ export default function PartnersManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('logo')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'logo' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'logo' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     3. الشعار
                   </button>
@@ -531,7 +530,7 @@ export default function PartnersManagementPage() {
                   <button
                     type="submit"
                     disabled={saving}
-                    className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold disabled:opacity-50 active:scale-95"
+                    className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold disabled:opacity-50 active:scale-95"
                   >
                     {saving ? (
                       <div className="w-3.5 h-3.5 border-2 border-black border-t-transparent rounded-full animate-spin" />

@@ -97,7 +97,7 @@ export default function LoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   dir="ltr"
                   placeholder="admin@cgl.sa"
-                  className="w-full bg-[#101217] border border-[#222630] rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#8bc34a] transition-colors"
+                  className="w-full bg-[#101217] border border-[#222630] rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#3b76b3] transition-colors"
                 />
                 <Mail className="w-4 h-4 text-stone-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               </div>
@@ -115,7 +115,7 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   dir="ltr"
                   placeholder="••••••••••••"
-                  className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#8bc34a] transition-colors pl-10"
+                  className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#3b76b3] transition-colors pl-10"
                 />
                 <button
                   type="button"
@@ -130,10 +130,10 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading || success}
-              className="w-full mt-2 bg-[#8bc34a] hover:bg-[#7cb342] text-black font-bold text-xs py-2.5 px-4 rounded-xl transition-all active:scale-[0.99] flex items-center justify-center gap-2 disabled:opacity-50"
+              className="w-full mt-2 bg-[#3b76b3] hover:bg-[#2a5b8c] text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all active:scale-[0.99] flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
             >
               {loading ? (
-                <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
               ) : (
                 <>
                   <span>دخول لوحة التحكم</span>

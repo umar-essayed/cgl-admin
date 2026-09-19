@@ -101,7 +101,7 @@ export default function ImageUploader({
               />
             </div>
             <div className="min-w-0">
-              <div className="flex items-center gap-1.5 text-xs text-[#8bc34a] font-medium">
+              <div className="flex items-center gap-1.5 text-xs text-[#3b76b3] font-medium">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>تم اختيار الصورة بنجاح</span>
               </div>
@@ -137,19 +137,19 @@ export default function ImageUploader({
           onClick={() => fileInputRef.current?.click()}
           className={`
             relative border-2 border-dashed rounded-xl p-5 text-center cursor-pointer transition-all
-            ${dragActive ? 'border-[#8bc34a] bg-[#8bc34a]/5' : 'border-[#2a2f3d] bg-[#0e1014] hover:border-stone-500 hover:bg-[#12151b]'}
+            ${dragActive ? 'border-[#3b76b3] bg-[#3b76b3]/5' : 'border-[#2a2f3d] bg-[#0e1014] hover:border-stone-500 hover:bg-[#12151b]'}
             ${uploading ? 'opacity-60 pointer-events-none' : ''}
           `}
         >
           <div className="flex flex-col items-center justify-center gap-2">
             {uploading ? (
-              <div className="flex items-center gap-2 text-xs text-[#8bc34a] font-medium py-2">
+              <div className="flex items-center gap-2 text-xs text-[#3b76b3] font-medium py-2">
                 <Loader2 className="w-5 h-5 animate-spin" />
                 <span>جاري رفع الصورة...</span>
               </div>
             ) : (
               <>
-                <div className="p-2.5 rounded-full bg-[#181c24] border border-[#2a2f3d] text-[#8bc34a]">
+                <div className="p-2.5 rounded-full bg-[#181c24] border border-[#2a2f3d] text-[#3b76b3]">
                   <UploadCloud className="w-5 h-5" />
                 </div>
                 <div>

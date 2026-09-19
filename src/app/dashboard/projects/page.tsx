@@ -1,4 +1,5 @@
 'use client';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
@@ -184,7 +185,7 @@ export default function ProjectsManagementPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2.5">
-            <FolderGit2 className="w-5 h-5 text-[#8bc34a]" />
+            <FolderGit2 className="w-5 h-5 text-[#3b76b3]" />
             <span>المشاريع الهندسية المعتمدة</span>
           </h1>
           <p className="text-xs text-stone-400 mt-1">
@@ -194,7 +195,7 @@ export default function ProjectsManagementPage() {
 
         <button
           onClick={openNewModal}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold transition-all active:scale-[0.99] shadow-lg shadow-[#8bc34a]/10"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold transition-all active:scale-[0.99] shadow-lg shadow-[#3b76b3]/10"
         >
           <Plus className="w-4 h-4" />
           <span>إضافة مشروع جديد</span>
@@ -210,14 +211,14 @@ export default function ProjectsManagementPage() {
             placeholder="البحث باسم المشروع أو الموقع..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-9 pl-4 py-2 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#8bc34a]"
+            className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-9 pl-4 py-2 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#3b76b3]"
           />
         </div>
 
         <select
           value={sectorFilter}
           onChange={(e) => setSectorFilter(e.target.value)}
-          className="bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-stone-300 focus:outline-none focus:border-[#8bc34a] w-full sm:w-auto"
+          className="bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-stone-300 focus:outline-none focus:border-[#3b76b3] w-full sm:w-auto"
         >
           <option value="all">كافة القطاعات</option>
           {sectors.map((sec: any) => (
@@ -228,9 +229,7 @@ export default function ProjectsManagementPage() {
 
       {/* Projects Grid */}
       {loading ? (
-        <div className="py-24 text-center text-xs text-stone-400 font-mono">
-          جاري تحميل المشاريع من Firestore...
-        </div>
+        <LoadingSpinner label="جاري استرجاع المشاريع الهندسية..." />
       ) : filteredProjects.length === 0 ? (
         <div className="py-20 text-center text-stone-400 text-xs bg-[#15181e] rounded-2xl border border-[#222630]">
           لم يتم العثور على أي مشاريع مطابقة للبحث
@@ -266,7 +265,7 @@ export default function ProjectsManagementPage() {
 
                 <div className="p-4 space-y-2.5">
                   <div className="flex items-center gap-1.5 text-[11px] font-mono text-stone-400">
-                    <MapPin className="w-3.5 h-3.5 text-[#8bc34a]" />
+                    <MapPin className="w-3.5 h-3.5 text-[#3b76b3]" />
                     <span>{project.locationAr || project.locationEn}</span>
                   </div>
 
@@ -348,7 +347,7 @@ export default function ProjectsManagementPage() {
             <div className="p-4 sm:p-5 border-b border-[#222630] flex items-center justify-between">
               <div>
                 <h3 className="font-bold text-sm sm:text-base text-white flex items-center gap-2">
-                  <FolderGit2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#8bc34a]" />
+                  <FolderGit2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#3b76b3]" />
                   <span>{isEditing ? 'تعديل بيانات المشروع' : 'إضافة مشروع هندسي جديد'}</span>
                 </h3>
                 <p className="text-[11px] text-stone-400 font-mono mt-0.5">{formData.id}</p>
@@ -368,7 +367,7 @@ export default function ProjectsManagementPage() {
                 onClick={() => setActiveTab('ar')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'ar'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -379,7 +378,7 @@ export default function ProjectsManagementPage() {
                 onClick={() => setActiveTab('en')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'en'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -390,7 +389,7 @@ export default function ProjectsManagementPage() {
                 onClick={() => setActiveTab('tech')}
                 className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
                   activeTab === 'tech'
-                    ? 'border-[#8bc34a] text-[#8bc34a] bg-[#15181e]'
+                    ? 'border-[#3b76b3] text-[#3b76b3] bg-[#15181e]'
                     : 'border-transparent text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -414,7 +413,7 @@ export default function ProjectsManagementPage() {
                       value={formData.nameAr}
                       onChange={(e) => setFormData({ ...formData, nameAr: e.target.value })}
                       placeholder="مثال: أعمال فحص التحميل الاستاتيكي للخوازيق الهندسية"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -429,7 +428,7 @@ export default function ProjectsManagementPage() {
                         value={formData.sectorAr}
                         onChange={(e) => setFormData({ ...formData, sectorAr: e.target.value })}
                         placeholder="مثال: الأساسات العميقة والمنشآت الكبرى"
-                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                       />
                     </div>
 
@@ -443,7 +442,7 @@ export default function ProjectsManagementPage() {
                         value={formData.locationAr}
                         onChange={(e) => setFormData({ ...formData, locationAr: e.target.value })}
                         placeholder="مثال: جدة، المملكة العربية السعودية"
-                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                       />
                     </div>
                   </div>
@@ -457,7 +456,7 @@ export default function ProjectsManagementPage() {
                       value={formData.clientAr || formData.client || ''}
                       onChange={(e) => setFormData({ ...formData, clientAr: e.target.value, client: e.target.value })}
                       placeholder="مثال: شركة ليفلز للمقاولات - مشروع برج سيسيان القابضة"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -471,7 +470,7 @@ export default function ProjectsManagementPage() {
                       value={formData.scopeOfWorkAr}
                       onChange={(e) => setFormData({ ...formData, scopeOfWorkAr: e.target.value })}
                       placeholder="تنفيذ وتوثيق فحص التحميل المحوري الاستاتيكي على الخوازيق الخرسانية..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -484,7 +483,7 @@ export default function ProjectsManagementPage() {
                       value={formData.technicalChallengesAr}
                       onChange={(e) => setFormData({ ...formData, technicalChallengesAr: e.target.value })}
                       placeholder="تطبيق أحمال ضخمة بأمان تام ورصد الهبوط المتناهي في الصغر..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -497,7 +496,7 @@ export default function ProjectsManagementPage() {
                       value={formData.engineeringApproachAr}
                       onChange={(e) => setFormData({ ...formData, engineeringApproachAr: e.target.value })}
                       placeholder="استخدام منظومة روافع معايرة مرتبطة بخلايا قياس ضغط معتمدة..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
                 </div>
@@ -516,7 +515,7 @@ export default function ProjectsManagementPage() {
                       value={formData.nameEn}
                       onChange={(e) => setFormData({ ...formData, nameEn: e.target.value })}
                       placeholder="e.g. Static Axial Compressive Pile Load Testing Project"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -531,7 +530,7 @@ export default function ProjectsManagementPage() {
                         value={formData.sectorEn}
                         onChange={(e) => setFormData({ ...formData, sectorEn: e.target.value })}
                         placeholder="e.g. Deep Foundations & Heavy Infrastructure"
-                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                       />
                     </div>
 
@@ -545,7 +544,7 @@ export default function ProjectsManagementPage() {
                         value={formData.locationEn}
                         onChange={(e) => setFormData({ ...formData, locationEn: e.target.value })}
                         placeholder="e.g. Jeddah, Kingdom of Saudi Arabia"
-                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                       />
                     </div>
                   </div>
@@ -559,7 +558,7 @@ export default function ProjectsManagementPage() {
                       value={formData.clientEn || ''}
                       onChange={(e) => setFormData({ ...formData, clientEn: e.target.value })}
                       placeholder="e.g. Levels Contracting - Sisban Holding Tower"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -573,7 +572,7 @@ export default function ProjectsManagementPage() {
                       value={formData.scopeOfWorkEn}
                       onChange={(e) => setFormData({ ...formData, scopeOfWorkEn: e.target.value })}
                       placeholder="Executing and monitoring full-scale static compressive pile load test..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -586,7 +585,7 @@ export default function ProjectsManagementPage() {
                       value={formData.technicalChallengesEn}
                       onChange={(e) => setFormData({ ...formData, technicalChallengesEn: e.target.value })}
                       placeholder="Applying massive compressive tonnage safely while logging sub-millimeter settlement..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -599,7 +598,7 @@ export default function ProjectsManagementPage() {
                       value={formData.engineeringApproachEn}
                       onChange={(e) => setFormData({ ...formData, engineeringApproachEn: e.target.value })}
                       placeholder="Calibrated hydraulic jacking assemblies coupled with certified pressure cells..."
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
                 </div>
@@ -630,7 +629,7 @@ export default function ProjectsManagementPage() {
                       <select
                         value={formData.relatedServiceId}
                         onChange={(e) => setFormData({ ...formData, relatedServiceId: e.target.value })}
-                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-stone-200 focus:outline-none focus:border-[#8bc34a]"
+                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-stone-200 focus:outline-none focus:border-[#3b76b3]"
                       >
                         <option value="geotechnical-investigation">فحص واستكشاف التربة (Geotechnical)</option>
                         <option value="engineering-surveying">المسح الهندسي والجيوديسي (Surveying)</option>
@@ -651,7 +650,7 @@ export default function ProjectsManagementPage() {
                       value={formData.relevantStandardsText}
                       onChange={(e) => setFormData({ ...formData, relevantStandardsText: e.target.value })}
                       placeholder="مثال: ASTM D1143, SBC 303, ACI 228"
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -672,7 +671,7 @@ export default function ProjectsManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('ar')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'ar' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'ar' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     1. عربي
                   </button>
@@ -680,7 +679,7 @@ export default function ProjectsManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('en')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'en' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'en' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     2. English
                   </button>
@@ -688,7 +687,7 @@ export default function ProjectsManagementPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('tech')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'tech' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'tech' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     3. المواصفات
                   </button>
@@ -706,7 +705,7 @@ export default function ProjectsManagementPage() {
                   <button
                     type="submit"
                     disabled={saving}
-                    className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold disabled:opacity-50 active:scale-95"
+                    className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold disabled:opacity-50 active:scale-95"
                   >
                     {saving ? (
                       <div className="w-3.5 h-3.5 border-2 border-black border-t-transparent rounded-full animate-spin" />

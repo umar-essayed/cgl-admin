@@ -1,4 +1,5 @@
 'use client';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 import React, { useState, useEffect } from 'react';
 import { 
@@ -223,7 +224,7 @@ export default function HeroSliderDashboardPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2.5">
-            <Sliders className="w-5 h-5 text-[#8bc34a]" />
+            <Sliders className="w-5 h-5 text-[#3b76b3]" />
             <span>إدارة سلايدر الهيرو التفاعلي</span>
           </h1>
           <p className="text-xs text-stone-400 mt-1">
@@ -233,7 +234,7 @@ export default function HeroSliderDashboardPage() {
 
         <button
           onClick={openAddModal}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold transition-all active:scale-[0.99] shadow-lg shadow-[#8bc34a]/10"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold transition-all active:scale-[0.99] shadow-lg shadow-[#3b76b3]/10"
         >
           <Plus className="w-4 h-4" />
           <span>إضافة شريحة جديدة</span>
@@ -293,7 +294,7 @@ export default function HeroSliderDashboardPage() {
                   </button>
                 </div>
 
-                <div className="w-8 h-8 rounded-xl bg-[#101217] border border-[#222630] flex items-center justify-center text-xs font-mono font-bold text-[#8bc34a]">
+                <div className="w-8 h-8 rounded-xl bg-[#101217] border border-[#222630] flex items-center justify-center text-xs font-mono font-bold text-[#3b76b3]">
                   #{slide.order || index + 1}
                 </div>
               </div>
@@ -327,7 +328,7 @@ export default function HeroSliderDashboardPage() {
               {/* Details Text */}
               <div className="flex-1 min-w-0 space-y-1 w-full md:w-auto">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#8bc34a]/10 text-[#8bc34a] border border-[#8bc34a]/20">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#3b76b3]/10 text-[#3b76b3] border border-[#3b76b3]/20">
                     {slide.tagAr || 'سلايد عام'}
                   </span>
                   <span className="text-xs text-stone-500 font-mono">
@@ -393,7 +394,7 @@ export default function HeroSliderDashboardPage() {
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-[#222630] mb-4">
               <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                <Sliders className="w-4 h-4 sm:w-5 sm:h-5 text-[#8bc34a]" />
+                <Sliders className="w-4 h-4 sm:w-5 sm:h-5 text-[#3b76b3]" />
                 <span>{editingSlide ? 'تعديل شريحة الهيرو' : 'إضافة شريحة جديدة للهيرو'}</span>
               </h2>
               <button
@@ -418,7 +419,7 @@ export default function HeroSliderDashboardPage() {
                 onClick={() => setActiveTab('ar')}
                 className={`flex-1 min-w-[100px] py-2 px-2 text-[11px] sm:text-xs font-semibold rounded-lg transition-all whitespace-nowrap text-center ${
                   activeTab === 'ar'
-                    ? 'bg-[#1a1e26] text-[#8bc34a] shadow-sm'
+                    ? 'bg-[#1a1e26] text-[#3b76b3] shadow-sm'
                     : 'text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -430,7 +431,7 @@ export default function HeroSliderDashboardPage() {
                 onClick={() => setActiveTab('en')}
                 className={`flex-1 min-w-[100px] py-2 px-2 text-[11px] sm:text-xs font-semibold rounded-lg transition-all whitespace-nowrap text-center ${
                   activeTab === 'en'
-                    ? 'bg-[#1a1e26] text-[#8bc34a] shadow-sm'
+                    ? 'bg-[#1a1e26] text-[#3b76b3] shadow-sm'
                     : 'text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -442,7 +443,7 @@ export default function HeroSliderDashboardPage() {
                 onClick={() => setActiveTab('media')}
                 className={`flex-1 min-w-[110px] py-2 px-2 text-[11px] sm:text-xs font-semibold rounded-lg transition-all whitespace-nowrap text-center ${
                   activeTab === 'media'
-                    ? 'bg-[#1a1e26] text-[#8bc34a] shadow-sm'
+                    ? 'bg-[#1a1e26] text-[#3b76b3] shadow-sm'
                     : 'text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -465,7 +466,7 @@ export default function HeroSliderDashboardPage() {
                       value={formData.titleAr}
                       onChange={(e) => setFormData({ ...formData, titleAr: e.target.value })}
                       placeholder="مثال: الدقة الهندسية في فحص التربة التي ترتكز عليها كبرى مشاريع المملكة..."
-                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -478,7 +479,7 @@ export default function HeroSliderDashboardPage() {
                       value={formData.subtitleAr}
                       onChange={(e) => setFormData({ ...formData, subtitleAr: e.target.value })}
                       placeholder="مثال: حفر الجسات الآلية، استخراج العينات الصخرية، واختبارات السلامة الإنشائية المعتمدة."
-                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -491,7 +492,7 @@ export default function HeroSliderDashboardPage() {
                       value={formData.tagAr}
                       onChange={(e) => setFormData({ ...formData, tagAr: e.target.value })}
                       placeholder="مثال: الدراسات الجيوتقنية واستكشاف التربة"
-                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
                 </div>
@@ -510,7 +511,7 @@ export default function HeroSliderDashboardPage() {
                       value={formData.titleEn}
                       onChange={(e) => setFormData({ ...formData, titleEn: e.target.value })}
                       placeholder="e.g. Geotechnical Engineering Precision Anchoring Saudi Arabia's Vision Projects..."
-                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -523,7 +524,7 @@ export default function HeroSliderDashboardPage() {
                       value={formData.subtitleEn}
                       onChange={(e) => setFormData({ ...formData, subtitleEn: e.target.value })}
                       placeholder="e.g. Automated deep core drilling, slope stability evaluation, and certified foundation testing."
-                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
 
@@ -536,7 +537,7 @@ export default function HeroSliderDashboardPage() {
                       value={formData.tagEn}
                       onChange={(e) => setFormData({ ...formData, tagEn: e.target.value })}
                       placeholder="e.g. Geotechnical & Subsurface Exploration"
-                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                      className="w-full bg-[#0c0e12] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>
                 </div>
@@ -560,7 +561,7 @@ export default function HeroSliderDashboardPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
                     <div className="p-3.5 bg-[#0c0e12] rounded-xl border border-[#222630]">
                       <label className="block text-xs text-stone-200 font-medium mb-2 flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-[#8bc34a]" />
+                        <Clock className="w-3.5 h-3.5 text-[#3b76b3]" />
                         <span>مدة العرض:</span>
                       </label>
                       <div className="flex items-center gap-2">
@@ -578,7 +579,7 @@ export default function HeroSliderDashboardPage() {
                           max={60}
                           value={formData.duration || 6}
                           onChange={(e) => setFormData({ ...formData, duration: Math.max(2, Math.min(60, Number(e.target.value) || 2)) })}
-                          className="w-14 bg-[#15181e] border border-[#222630] rounded-lg py-1.5 text-xs text-white font-mono text-center focus:outline-none focus:border-[#8bc34a]"
+                          className="w-14 bg-[#15181e] border border-[#222630] rounded-lg py-1.5 text-xs text-white font-mono text-center focus:outline-none focus:border-[#3b76b3]"
                         />
                         <button
                           type="button"
@@ -611,7 +612,7 @@ export default function HeroSliderDashboardPage() {
                           max={99}
                           value={formData.order || 1}
                           onChange={(e) => setFormData({ ...formData, order: Math.max(1, Number(e.target.value) || 1) })}
-                          className="w-14 bg-[#15181e] border border-[#222630] rounded-lg py-1.5 text-xs text-white font-mono text-center focus:outline-none focus:border-[#8bc34a]"
+                          className="w-14 bg-[#15181e] border border-[#222630] rounded-lg py-1.5 text-xs text-white font-mono text-center focus:outline-none focus:border-[#3b76b3]"
                         />
                         <button
                           type="button"
@@ -633,7 +634,7 @@ export default function HeroSliderDashboardPage() {
                       id="isActive"
                       checked={formData.isActive}
                       onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                      className="w-4 h-4 rounded border-[#222630] text-[#8bc34a] focus:ring-0 bg-[#15181e]"
+                      className="w-4 h-4 rounded border-[#222630] text-[#3b76b3] focus:ring-0 bg-[#15181e]"
                     />
                     <label htmlFor="isActive" className="text-xs text-stone-200 font-medium cursor-pointer">
                       تفعيل ظهور هذه الشريحة فوراً في الصفحة الرئيسية
@@ -648,7 +649,7 @@ export default function HeroSliderDashboardPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('ar')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'ar' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'ar' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     1. عربي
                   </button>
@@ -656,7 +657,7 @@ export default function HeroSliderDashboardPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('en')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'en' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'en' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     2. English
                   </button>
@@ -664,7 +665,7 @@ export default function HeroSliderDashboardPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('media')}
-                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'media' ? 'bg-[#8bc34a]/20 text-[#8bc34a]' : 'text-stone-500'}`}
+                    className={`px-2.5 py-1 rounded text-[11px] ${activeTab === 'media' ? 'bg-[#3b76b3]/20 text-[#3b76b3]' : 'text-stone-500'}`}
                   >
                     3. الوسائط
                   </button>
@@ -682,7 +683,7 @@ export default function HeroSliderDashboardPage() {
                   <button
                     type="submit"
                     disabled={saving}
-                    className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black font-bold text-xs shadow-lg transition-all disabled:opacity-50 active:scale-95"
+                    className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white font-bold text-xs shadow-lg transition-all disabled:opacity-50 active:scale-95"
                   >
                     {saving ? 'جاري الحفظ...' : editingSlide ? 'تحديث الشريحة' : 'إضافة الشريحة'}
                   </button>

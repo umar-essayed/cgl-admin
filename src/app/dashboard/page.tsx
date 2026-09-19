@@ -12,8 +12,10 @@ import {
   RefreshCw, 
   Plus, 
   Phone,
-  MessageSquare
+  MessageSquare,
+  Wrench
 } from 'lucide-react';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 export default function DashboardOverviewPage() {
   const [stats, setStats] = useState<any>(null);
@@ -54,15 +56,17 @@ export default function DashboardOverviewPage() {
   };
 
   if (loading) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh] gap-3">
-        <div className="w-6 h-6 border-2 border-[#8bc34a] border-t-transparent rounded-full animate-spin" />
-        <span className="text-xs text-stone-400">جاري تحميل البيانات...</span>
-      </div>
-    );
+    return <LoadingSpinner label="جاري استرجاع بيانات النظام..." />;
   }
 
   const statCards = [
+    {
+      title: 'الخدمات الهندسية',
+      count: stats?.totalServices ?? 7,
+      href: '/dashboard/services',
+      icon: Wrench,
+      subtitle: 'خدمة واستشارة معتمدة'
+    },
     {
       title: 'المشاريع الهندسية',
       count: stats?.totalProjects ?? 0,
@@ -118,13 +122,13 @@ export default function DashboardOverviewPage() {
             disabled={refreshing}
             className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#16181e] hover:bg-[#1f222b] text-stone-300 text-xs border border-[#222630] transition-colors disabled:opacity-50"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin text-[#8bc34a]' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin text-[#3b76b3]' : ''}`} />
             <span>تحديث</span>
           </button>
 
           <Link
             href="/dashboard/projects"
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold transition-colors"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>إضافة مشروع</span>
@@ -133,7 +137,7 @@ export default function DashboardOverviewPage() {
       </div>
 
       {/* Metrics Cards Grid - 2 columns on mobile, 5 on desktop */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2.5 sm:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2.5 sm:gap-4">
         {statCards.map((card, i) => {
           const Icon = card.icon;
           return (
@@ -155,7 +159,7 @@ export default function DashboardOverviewPage() {
                     {card.count}
                   </span>
                   {card.badge && (
-                    <span className="px-1.5 py-0.5 rounded-md bg-[#8bc34a]/15 text-[#8bc34a] text-[9px] sm:text-[10px] font-bold border border-[#8bc34a]/30">
+                    <span className="px-1.5 py-0.5 rounded-md bg-[#3b76b3]/15 text-[#508ecb] text-[9px] sm:text-[10px] font-bold border border-[#3b76b3]/30">
                       {card.badge}
                     </span>
                   )}
@@ -181,7 +185,7 @@ export default function DashboardOverviewPage() {
 
           <Link
             href="/dashboard/rfqs"
-            className="text-xs text-[#8bc34a] hover:underline flex items-center gap-1 font-medium"
+            className="text-xs text-[#3b76b3] hover:underline flex items-center gap-1 font-medium"
           >
             <span>عرض الكل</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -228,7 +232,7 @@ export default function DashboardOverviewPage() {
                               className="p-1.5 rounded-lg bg-[#1a1e26] text-stone-300 border border-[#262b37] active:scale-95"
                               title="اتصال"
                             >
-                              <Phone className="w-3.5 h-3.5 text-[#8bc34a]" />
+                              <Phone className="w-3.5 h-3.5 text-[#3b76b3]" />
                             </a>
                             <a
                               href={`https://wa.me/${cleanPhone}`}
@@ -319,7 +323,7 @@ export default function DashboardOverviewPage() {
                             <select
                               value={rfq.status || 'new'}
                               onChange={(e) => handleUpdateRfqStatus(rfq.id, e.target.value)}
-                              className="bg-[#101217] border border-[#222630] rounded-lg px-2 py-1 text-[11px] text-stone-300 focus:outline-none focus:border-[#8bc34a]"
+                              className="bg-[#101217] border border-[#222630] rounded-lg px-2 py-1 text-[11px] text-stone-300 focus:outline-none focus:border-[#3b76b3]"
                             >
                               <option value="new">جديد</option>
                               <option value="reviewed">تمت المراجعة</option>

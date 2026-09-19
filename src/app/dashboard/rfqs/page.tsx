@@ -1,4 +1,5 @@
 'use client';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 import React, { useEffect, useState } from 'react';
 import { 
@@ -95,7 +96,7 @@ export default function RfqsInboxPage() {
       {/* Header */}
       <div>
         <h2 className="text-xl font-bold text-stone-100 flex items-center gap-2.5">
-          <MailCheck className="w-5 h-5 text-[#8bc34a]" />
+          <MailCheck className="w-5 h-5 text-[#3b76b3]" />
           <span>طلبات عروض الأسعار والاستفسارات الهندسية (RFQ)</span>
         </h2>
         <p className="text-xs text-stone-400 mt-1">
@@ -112,7 +113,7 @@ export default function RfqsInboxPage() {
             placeholder="البحث باسم العميل، الشركة، رقم الهاتف، أو البريد..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-9 pl-4 py-2 text-xs text-stone-200 placeholder-stone-400 focus:outline-none focus:border-[#8bc34a]"
+            className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-9 pl-4 py-2 text-xs text-stone-200 placeholder-stone-400 focus:outline-none focus:border-[#3b76b3]"
           />
         </div>
 
@@ -141,9 +142,7 @@ export default function RfqsInboxPage() {
 
       {/* Main Content */}
       {loading ? (
-        <div className="py-24 text-center text-xs text-stone-400 font-mono">
-          جاري استرجاع طلبات عروض الأسعار من Firestore...
-        </div>
+        <LoadingSpinner label="جاري استرجاع طلبات عروض الأسعار..." />
       ) : filteredRfqs.length === 0 ? (
         <div className="py-20 text-center text-stone-400 text-xs bg-[#15181e] rounded-2xl border border-[#222630]">
           لا توجد طلبات تطابق معايير الفلترة الحالية
@@ -165,7 +164,7 @@ export default function RfqsInboxPage() {
                     setIsMobileModalOpen(true);
                   }}
                   className={`bg-[#15181e] border rounded-2xl p-4 transition-colors cursor-pointer ${
-                    isSelected ? 'border-[#8bc34a] bg-[#1a1e26]' : 'border-[#222630] hover:border-stone-600'
+                    isSelected ? 'border-[#3b76b3] bg-[#1a1e26]' : 'border-[#222630] hover:border-stone-600'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3 mb-2">
@@ -173,7 +172,7 @@ export default function RfqsInboxPage() {
                       <div className="flex items-center gap-2 flex-wrap">
                         <h4 className="font-bold text-sm text-stone-100">{rfq.fullName}</h4>
                         {rfq.refNumber && (
-                          <span className="px-2 py-0.5 rounded-md bg-[#8bc34a]/15 text-[#8bc34a] border border-[#8bc34a]/25 text-[10px] font-mono font-bold" dir="ltr">
+                          <span className="px-2 py-0.5 rounded-md bg-[#3b76b3]/15 text-[#3b76b3] border border-[#3b76b3]/25 text-[10px] font-mono font-bold" dir="ltr">
                             {rfq.refNumber}
                           </span>
                         )}
@@ -231,7 +230,7 @@ export default function RfqsInboxPage() {
                       <select
                         value={rfq.status || 'new'}
                         onChange={(e) => handleUpdateStatus(rfq.id, e.target.value)}
-                        className="bg-[#101217] border border-[#222630] rounded-lg px-2 py-1 text-[10px] text-stone-300 focus:outline-none focus:border-[#8bc34a]"
+                        className="bg-[#101217] border border-[#222630] rounded-lg px-2 py-1 text-[10px] text-stone-300 focus:outline-none focus:border-[#3b76b3]"
                       >
                         <option value="new">جديد</option>
                         <option value="reviewed">تمت المراجعة</option>
@@ -260,7 +259,7 @@ export default function RfqsInboxPage() {
                 <div className="pb-3 border-b border-[#222630] flex items-center justify-between">
                   <h3 className="font-bold text-sm text-stone-100">تفاصيل الطلب الفني</h3>
                   {selectedRfq.refNumber ? (
-                    <span className="text-[11px] text-[#8bc34a] font-mono font-bold px-2 py-0.5 rounded bg-[#8bc34a]/10 border border-[#8bc34a]/20" dir="ltr">
+                    <span className="text-[11px] text-[#3b76b3] font-mono font-bold px-2 py-0.5 rounded bg-[#3b76b3]/10 border border-[#3b76b3]/20" dir="ltr">
                       {selectedRfq.refNumber}
                     </span>
                   ) : (
@@ -377,7 +376,7 @@ export default function RfqsInboxPage() {
               <div>
                 <h3 className="font-bold text-sm text-stone-100">تفاصيل الطلب الفني</h3>
                 {selectedRfq.refNumber ? (
-                  <span className="text-[11px] text-[#8bc34a] font-mono font-bold block mt-0.5" dir="ltr">
+                  <span className="text-[11px] text-[#3b76b3] font-mono font-bold block mt-0.5" dir="ltr">
                     {selectedRfq.refNumber}
                   </span>
                 ) : (

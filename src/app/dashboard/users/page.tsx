@@ -1,4 +1,5 @@
 'use client';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 import React, { useEffect, useState } from 'react';
 import { 
@@ -192,7 +193,7 @@ export default function UsersManagementPage() {
         );
       case 'admin':
         return (
-          <span className="px-2.5 py-1 rounded-lg bg-[#8bc34a]/10 text-[#8bc34a] border border-[#8bc34a]/20 text-xs font-bold inline-flex items-center gap-1">
+          <span className="px-2.5 py-1 rounded-lg bg-[#3b76b3]/10 text-[#3b76b3] border border-[#3b76b3]/20 text-xs font-bold inline-flex items-center gap-1">
             <Shield className="w-3.5 h-3.5" />
             <span>مشرف نظام (Admin)</span>
           </span>
@@ -212,7 +213,7 @@ export default function UsersManagementPage() {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#13151a] p-4 sm:p-6 rounded-2xl border border-[#222630] shadow-md">
         <div>
-          <div className="flex items-center gap-2 text-xs font-mono text-[#8bc34a] mb-1">
+          <div className="flex items-center gap-2 text-xs font-mono text-[#3b76b3] mb-1">
             <ShieldCheck className="w-4 h-4" />
             <span>فريق الإدارة والتحكم</span>
           </div>
@@ -228,7 +229,7 @@ export default function UsersManagementPage() {
             setFormData({ name: '', email: '', password: '', role: 'admin' });
             setIsModalOpen(true);
           }}
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
         >
           <UserPlus className="w-4 h-4" />
           <span>إضافة مشرف جديد</span>
@@ -243,7 +244,7 @@ export default function UsersManagementPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="بحث بالاسم أو البريد الإلكتروني..."
-            className="w-full bg-[#101217] border border-[#222630] rounded-xl pl-3.5 pr-10 py-2 text-xs sm:text-sm text-white placeholder-stone-500 focus:outline-none focus:border-[#8bc34a] transition-colors"
+            className="w-full bg-[#101217] border border-[#222630] rounded-xl pl-3.5 pr-10 py-2 text-xs sm:text-sm text-white placeholder-stone-500 focus:outline-none focus:border-[#3b76b3] transition-colors"
           />
           <Search className="w-4 h-4 text-stone-500 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
         </div>
@@ -255,7 +256,7 @@ export default function UsersManagementPage() {
       {/* Loading state */}
       {loading ? (
         <div className="p-12 text-center bg-[#13151a] rounded-2xl border border-[#222630]">
-          <div className="w-8 h-8 border-2 border-[#8bc34a] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+          <div className="w-8 h-8 border-2 border-[#3b76b3] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
           <p className="text-xs text-stone-400">جاري تحميل حسابات المشرفين...</p>
         </div>
       ) : filteredUsers.length === 0 ? (
@@ -272,7 +273,7 @@ export default function UsersManagementPage() {
               <div 
                 key={user.id} 
                 className={`bg-[#13151a] border rounded-2xl p-4 shadow-sm transition-all ${
-                  user.isRoot ? 'border-[#8bc34a]/30 bg-gradient-to-b from-[#13151a] to-[#151a14]' : 'border-[#222630]'
+                  user.isRoot ? 'border-[#3b76b3]/30 bg-gradient-to-b from-[#13151a] to-[#151a14]' : 'border-[#222630]'
                 }`}
               >
                 <div className="flex items-start justify-between gap-3 mb-2.5">
@@ -280,7 +281,7 @@ export default function UsersManagementPage() {
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <span className="font-bold text-sm text-white truncate">{user.name}</span>
                       {user.isRoot && (
-                        <span className="px-2 py-0.5 rounded-md bg-[#8bc34a]/20 text-[#8bc34a] text-[10px] font-mono font-bold">
+                        <span className="px-2 py-0.5 rounded-md bg-[#3b76b3]/20 text-[#3b76b3] text-[10px] font-mono font-bold">
                           رئيسي
                         </span>
                       )}
@@ -368,7 +369,7 @@ export default function UsersManagementPage() {
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-2.5">
                         <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs ${
-                          user.isRoot ? 'bg-[#8bc34a] text-black' : 'bg-[#1a1e26] text-stone-300'
+                          user.isRoot ? 'bg-[#3b76b3] text-white font-bold' : 'bg-[#1a1e26] text-stone-300'
                         }`}>
                           {user.name.charAt(0)}
                         </div>
@@ -376,7 +377,7 @@ export default function UsersManagementPage() {
                           <div className="font-bold text-white flex items-center gap-1.5">
                             <span>{user.name}</span>
                             {user.isRoot && (
-                              <span className="px-1.5 py-0.5 rounded bg-[#8bc34a]/20 text-[#8bc34a] text-[10px] font-mono">
+                              <span className="px-1.5 py-0.5 rounded bg-[#3b76b3]/20 text-[#3b76b3] text-[10px] font-mono">
                                 رئيسي
                               </span>
                             )}
@@ -465,7 +466,7 @@ export default function UsersManagementPage() {
           <div className="w-full max-w-lg bg-[#15181e] border border-[#222630] rounded-t-3xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-4 border-b border-[#222630] mb-4">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl bg-[#8bc34a]/10 text-[#8bc34a]">
+                <div className="p-2 rounded-xl bg-[#3b76b3]/10 text-[#3b76b3]">
                   <UserPlus className="w-5 h-5" />
                 </div>
                 <div>
@@ -500,7 +501,7 @@ export default function UsersManagementPage() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="م. محمد الغامدي"
-                    className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-10 pl-3.5 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#8bc34a]"
+                    className="w-full bg-[#101217] border border-[#222630] rounded-xl pr-10 pl-3.5 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#3b76b3]"
                   />
                   <User className="w-4 h-4 text-stone-500 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
@@ -518,7 +519,7 @@ export default function UsersManagementPage() {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     dir="ltr"
                     placeholder="name@cgl.sa"
-                    className="w-full bg-[#101217] border border-[#222630] rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#8bc34a]"
+                    className="w-full bg-[#101217] border border-[#222630] rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#3b76b3]"
                   />
                   <Mail className="w-4 h-4 text-stone-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
@@ -537,7 +538,7 @@ export default function UsersManagementPage() {
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     dir="ltr"
                     placeholder="••••••••••••"
-                    className="w-full bg-[#101217] border border-[#222630] rounded-xl pl-10 pr-10 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#8bc34a]"
+                    className="w-full bg-[#101217] border border-[#222630] rounded-xl pl-10 pr-10 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#3b76b3]"
                   />
                   <Lock className="w-4 h-4 text-stone-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                   <button
@@ -566,7 +567,7 @@ export default function UsersManagementPage() {
                       onClick={() => setFormData({ ...formData, role: roleOpt.id as any })}
                       className={`p-3 rounded-xl border text-center transition-all ${
                         formData.role === roleOpt.id
-                          ? 'bg-[#8bc34a]/15 border-[#8bc34a] text-white'
+                          ? 'bg-[#3b76b3]/15 border-[#3b76b3] text-white'
                           : 'bg-[#101217] border-[#222630] text-stone-400 hover:text-stone-200'
                       }`}
                     >
@@ -588,7 +589,7 @@ export default function UsersManagementPage() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold shadow-md transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold shadow-md transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                 >
                   {saving ? (
                     <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
@@ -611,7 +612,7 @@ export default function UsersManagementPage() {
           <div className="w-full max-w-md bg-[#15181e] border border-[#222630] rounded-t-3xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-[#222630] mb-4">
               <div className="flex items-center gap-2">
-                <KeyRound className="w-5 h-5 text-[#8bc34a]" />
+                <KeyRound className="w-5 h-5 text-[#3b76b3]" />
                 <h3 className="text-base font-bold text-white">تعديل بيانات الحساب</h3>
               </div>
               <button
@@ -642,7 +643,7 @@ export default function UsersManagementPage() {
                 <select
                   value={editRole}
                   onChange={(e) => setEditRole(e.target.value as any)}
-                  className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8bc34a]"
+                  className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#3b76b3]"
                 >
                   <option value="superadmin">مدير عام (Super Admin)</option>
                   <option value="admin">مشرف نظام (Admin)</option>
@@ -660,7 +661,7 @@ export default function UsersManagementPage() {
                   onChange={(e) => setResetPassword(e.target.value)}
                   dir="ltr"
                   placeholder="كلمة مرور جديدة (6 خانات على الأقل)"
-                  className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#8bc34a]"
+                  className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#3b76b3]"
                 />
               </div>
 
@@ -675,7 +676,7 @@ export default function UsersManagementPage() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-5 py-2 rounded-xl bg-[#8bc34a] hover:bg-[#7cb342] text-black text-xs font-bold shadow transition-all disabled:opacity-50"
+                  className="px-5 py-2 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold shadow transition-all disabled:opacity-50"
                 >
                   {saving ? 'جاري الحفظ...' : 'حفظ التعديلات'}
                 </button>
