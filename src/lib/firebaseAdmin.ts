@@ -6,15 +6,15 @@ import path from 'path';
 // Embedded fallback credentials for production deployment
 const EMBEDDED_SERVICE_ACCOUNT = {
   type: "service_account",
-  project_id: "gcll-70b0d",
-  private_key_id: "ac59a361c0b015ed9ccea168f48f209912314e25",
-  private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCvwhrb4zR6unkl\nrcgUggrEfXw9y07bsuo86biHpeCpW1TxWmYH8seX/sFG/Tz8Q7twiX4oQEPhgjLb\nzxi/lg9SFnmxGRnxJ5w27Q478ps8MNZdhVroOCBSfxuVzRjJDsTmRuMui9gZZten\nX5FWnKtv9ZhV57QIFRfZ9FpAPlc5HT3scQ9fIm0HJ/Af7dmlrnNBC9XuhqQ2Ds0X\nuxPLrDE+75gLDUSp6Cqx3bu/WlGIGh63Xz7JqJIA2AEWZmI+PDfsz5N77p+cJuNa\nF6uQ9S7b8v8QMCJcqo0rdVsaZH0do+6xq86S/tTVrbownPax7UsnVWyQVX8c489K\njtyAz049AgMBAAECggEACwiVcd5jXTadnY1TG5TgvJF5t9HIKcFwNDi77XZ7xXkt\nVCV623h7Q5up+7aw5s+qhOSsxDW2M5vEoGK+e/1Qoueasup149shUs7/VY+wyehX\nwyRr0fSY2ttatCtdXF0OZIjPGqa+zAFvyMF87A7Ty47qBeKQ1vBA2hCD8rdQxHRq\nko7AtxTJ69P8drM0G8aycEWAih80Sl4ZnbBd3QgciYPaYT59JTm3u6PpxhH7pJre\nZ3eb51MApqVrFyvUfJLMg3gRhZeqXGN1lI8yfClmjNvVv3UESnT/JMHwYddsAQJD\nt2R8velrrcuAwAzvkOVeD0Dyb6L3/gy4I2kosOCZBQKBgQDmN1cAv9FCvckJCiGp\nSe71NAtWwoq/AAn+peBxQnXgdaEQNyzZteIgjWIbWnWF94Bcb99u499cdtRiaUSu\nQB1UL3Xz3ryoGzEr0EdrDql1U8chSTCxT4/kEB7hhAIglVtVChE6xZcNaWx6hKz8\noGvG7q4TY0u+efFZ2UlGKlcsgwKBgQDDcV6ylEWqhzoF97CPphRzkwXMKmtfzjfU\nqvOQioILJOZ/2DP/P+hP0rGGD+la90Zg+mdMP83qLvOxzfDaohyU+Q+XLDkTXTR3\nD6hdK/L5fnck1+MyA6DW3mpz06Y1B+y2kpjQdTl8OyMC8cJg30IjbNJNR6HTML9f\nvkYKmAwePwKBgQCGNz1B8pLNllfeLUnyqGfoDK+PpVu+fwdUruBrJ5QRiIKeMYy0\nYJW05LiNue9Ka0Eqow5gV/mgrqajuTuRW0++BO1/gBv85d2E7ai1gZbKEE3H2iPJ\nO9ln3P4j/BJBbNISggwJd6jY6N2VkERKBDzRfdV++CTwp6dN+p/9iDHKgQKBgDOv\n489ujw4OPTYezz7uOTJni3z3KvZnXzSLEWcEemfgFmVxFC9JA3M40WIXCyvXgXFc\nR71OknKAgEphoHTxsoVjaNAeDeolGB70sR4S5Ws+GtxPi/JKK1sn7xc6vhYARoXy\nNx/KIK3OJfA9Z56e7KrZuLRfYVis56+2bmeW1n2ZAoGBAIVHCU2+hlOHHtDtFHvQ\ntFGsON6N3uEpYpBDXesaQErENuBBd8fPfMs/1PNwM40EzNdBuv8Ji8iVOJz3tUQ5\n7PUL5lEsyty+qBWkAWiYPhtt9fVrS9YNSiV8Z30bmhqiVOLvKFJLfvIv8+WqXvqI\nlfDsbLqz1SH05cB2Ba0of8/N\n-----END PRIVATE KEY-----\n",
-  client_email: "firebase-adminsdk-fbsvc@gcll-70b0d.iam.gserviceaccount.com",
-  client_id: "102039170025804963857",
+  project_id: "gccll-17a67",
+  private_key_id: "47fcde5b3263864e28372b1153ad39f7e7633df9",
+  private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC1hP0MqUhc6CwC\nnYtGbrr3+cPGqejBhcHqfzOAkgBFeKl9Y87jdjqTHENCa3IIOk+uN6mRLqJCb6l/\nPak2+9orFvhNKt+HSfAFwj8jNtwZIDnUT5P+P4NMJF1vUunFhoMD79V4cd8lef5d\njlkqTG9LhX/iAq/Acc87hMbK8oASFnphzptMkt7qt7tz9kCuNUhE7zUKK0K+LcfD\nfMOvMuGu6GNp3jwr9NZ2ra9aUUxFpmJNXkaswdKiyQ/OvWF3miW5BlGuU3x/CpN5\nhGTpw5CnTpJfEw4+uGYaYwhPNluaaMhpuTxDI/1ufIb7Q38Apy/o/gImYYJOBrdL\nEdCkg3B3AgMBAAECggEALgIGLYZerAXA2ezal0CLrTymLZ11PE/NxcT15dmbrgAW\nXYzFrIuT7yOTvKsFHSbCeXLsTLsYL2Sj/nc/g4s0UgWha9W5EE5iQuNoI2HNSaUM\nY07EQQYSHmN9NzE5xXIBlSbd4YhjOdmA6m+hFAKJlwfAUSXDLDDsiLZvuJLceTjB\nqzh8WQEkGQt06mgDRQ7ya2/mgF93sSfemoijUIaWzky0kL3odyJJv7afUpGfR+x6\nQ+9YxrmIVVklWoDbs0r4+QvyDyyipiTbgNRYjH2cPpSLbU9Dm0rtMSIoJJAFEtlm\nSGpfNBUTZNXPecDybkooA4TFIe9jDJ6UgmjjvCn56QKBgQDpyiUa5G5o4bL93BO9\nFabSghk6vwyd5Sc8fpwmct/TCUkdazstt7cqJO4yGraiY2oDpdmIQ2knhcYFGVP5\nXNd870ZSZDWxS/nmfRZABCib0YMXw4auTnPMZ5e0VO53gIkDDjPCwOl4hJRkQqXL\nPLZ1JZ7XL8nUXrt1ouP1bvtAAwKBgQDGw5z+fvWT6kt+yyzhIIdRLwjt0kNuHKxc\nGo3Dsz2pNdmraSNqWh9MhYZbva+v6qd6AN1lIbl3jGIaugBIJ3raaakj76feLKVq\n1FT4qyG36R/DoSHOQr3xX5UTTM6IAQ3pLTcZBp/PvN8NsPMzxPqyMwvvkmzhy1RN\nD8TXG9xlfQKBgQDDzEeNITkS38uPboyddI+1h73nhG/loTBeKs9OKDEqRoGUgOUc\nIdvmEO3oypSgpc/45CKuS3662f+A77hzhHz4plBn2oNZTH8ruSE0VgdIkIxRD7Ex\nNIUo8K2OGv9o2B5nj7Jr7jLae3boDSVbdCp/LBW+tMg882XeXKC8QclszwKBgCy9\nm3kt2tmQw62mzlNenxcHH1tpGQSQL7wLvh1vG1IbbQPIhtBJuQHgjH3aFNHkYA52\nY1+AV98xGmQpuiaDvIOthQUxzPeV1SZW5UmUO+LJ9vxyKMnk/Bx5B3VwtIyosBjs\ntJpNg2ufeBX83sGodUXnd6hVrWyl+DPgeM5y1wmBAoGAQ1vF8HhQQv2FO6CC7fkT\nNIr8nUNRkd/sTx1xD2A7v1SS4xHJT2kWVy6IwrSCnNVbtoFAlGZUVuFBZNr2dczW\nQTJpptFYQ6MM43dpawhl5AFaXTv2g8czCXAtNWVEiKi1ngUMJAUXoHXB18BPnex/\niAXkEkDbHOr6EFyO8zOG84Q=\n-----END PRIVATE KEY-----\n",
+  client_email: "firebase-adminsdk-fbsvc@gccll-17a67.iam.gserviceaccount.com",
+  client_id: "102077114480269244168",
   auth_uri: "https://accounts.google.com/o/oauth2/auth",
   token_uri: "https://oauth2.googleapis.com/token",
   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-  client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40gcll-70b0d.iam.gserviceaccount.com",
+  client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40gccll-17a67.iam.gserviceaccount.com",
   universe_domain: "googleapis.com"
 };
 
@@ -35,7 +35,7 @@ function getServiceAccount() {
   // 2. Check discrete environment variables
   if (process.env.FIREBASE_CLIENT_EMAIL && process.env.FIREBASE_PRIVATE_KEY) {
     return {
-      projectId: process.env.FIREBASE_PROJECT_ID || 'gcll-70b0d',
+      projectId: process.env.FIREBASE_PROJECT_ID || 'gccll-17a67',
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
       privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
     };
@@ -45,7 +45,7 @@ function getServiceAccount() {
   const localCandidates = [
     process.env.FIREBASE_SERVICE_ACCOUNT_PATH,
     path.join(process.cwd(), 'firebase-service-account.json'),
-    '/media/omar/second/cgl/gcll-70b0d-firebase-adminsdk-fbsvc-ac59a361c0.json'
+    '/media/omar/second/cgl/gccll-17a67-firebase-adminsdk-fbsvc-47fcde5b32.json'
   ].filter(Boolean) as string[];
 
   for (const p of localCandidates) {
