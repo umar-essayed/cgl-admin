@@ -65,7 +65,7 @@ export default function PartnersManagementPage() {
   }, []);
 
   const openNewModal = () => {
-    const nextId = `partner-${Date.now()}`;
+    const nextId = `cgl-partner-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
     setFormData({
       id: nextId,
       nameAr: '',

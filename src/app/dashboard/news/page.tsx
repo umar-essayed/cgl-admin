@@ -92,10 +92,13 @@ export default function NewsManagementPage() {
     fetchNews();
   }, []);
 
+  const generateUniqueNewsId = () => {
+    return `news-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
+  };
+
   const openNewModal = () => {
-    const nextId = `news-0${articles.length + 1}`;
     setFormData({
-      id: nextId,
+      id: generateUniqueNewsId(),
       titleAr: '',
       titleEn: '',
       excerptAr: '',

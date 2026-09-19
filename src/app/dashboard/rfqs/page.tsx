@@ -17,7 +17,8 @@ import {
   Clock,
   CheckCircle2,
   ExternalLink,
-  X
+  X,
+  ChevronDown
 } from 'lucide-react';
 
 export default function RfqsInboxPage() {
@@ -227,16 +228,19 @@ export default function RfqsInboxPage() {
                         </a>
                       )}
 
-                      <select
-                        value={rfq.status || 'new'}
-                        onChange={(e) => handleUpdateStatus(rfq.id, e.target.value)}
-                        className="bg-[#101217] border border-[#222630] rounded-lg px-2 py-1 text-[10px] text-stone-300 focus:outline-none focus:border-[#3b76b3]"
-                      >
-                        <option value="new">جديد</option>
-                        <option value="reviewed">تمت المراجعة</option>
-                        <option value="contacted">تم التواصل</option>
-                        <option value="closed">مؤرشف</option>
-                      </select>
+                      <div className="relative inline-flex items-center" onClick={(e) => e.stopPropagation()}>
+                        <select
+                          value={rfq.status || 'new'}
+                          onChange={(e) => handleUpdateStatus(rfq.id, e.target.value)}
+                          className="appearance-none bg-[#101217] border border-[#222630] hover:border-[#3b76b3] rounded-lg pr-2.5 pl-6 py-1 text-[10px] text-stone-200 focus:outline-none focus:border-[#3b76b3] cursor-pointer transition-colors"
+                        >
+                          <option value="new">جديد ⏳</option>
+                          <option value="reviewed">تمت المراجعة 📋</option>
+                          <option value="contacted">تم التواصل 📞</option>
+                          <option value="closed">مؤرشف 📁</option>
+                        </select>
+                        <ChevronDown className="w-3 h-3 text-stone-400 absolute left-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      </div>
 
                       <button
                         onClick={() => setDeleteConfirmId(rfq.id)}

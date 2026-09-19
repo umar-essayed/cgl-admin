@@ -90,7 +90,7 @@ export default function HeroSliderDashboardPage() {
     setEditingSlide(null);
     setFormData({
       ...EMPTY_SLIDE,
-      id: `hero-slide-${Date.now()}`,
+      id: `hero-slide-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`,
       order: slides.length + 1,
       duration: 6,
     });

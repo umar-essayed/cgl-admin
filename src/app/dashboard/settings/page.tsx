@@ -139,6 +139,63 @@ export default function SettingsPage() {
       </div>
 
       <form onSubmit={handleSave} className="space-y-6">
+        {/* Theme Color Selector */}
+        <div className="bg-[#15181e] border border-[#222630] rounded-2xl p-4 sm:p-6 space-y-4">
+          <div className="flex items-center gap-2 pb-3 border-b border-[#222630] text-stone-100 font-bold text-sm">
+            <div className="w-3.5 h-3.5 rounded-full bg-[#3b76b3]" />
+            <span>اللون الرئيسي للموقع (Theme Color)</span>
+            <span className="text-[11px] text-stone-400 font-normal mr-auto">الافتراضي: الأزرق</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button
+              type="button"
+              onClick={() => setSettings({ ...settings, themeColor: 'blue' })}
+              className={`p-4 rounded-xl border text-right transition-all flex items-center justify-between ${
+                (settings?.themeColor || 'blue') === 'blue'
+                  ? 'bg-[#3b76b3]/15 border-[#3b76b3] text-white shadow-lg shadow-[#3b76b3]/10 ring-1 ring-[#3b76b3]'
+                  : 'bg-[#101217] border-[#222630] text-stone-400 hover:text-stone-200 hover:border-stone-700'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[#3b76b3] flex items-center justify-center text-white shadow-md font-bold text-xs">
+                  CGL
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-white">اللون الأزرق الهندسي (الافتراضي)</div>
+                  <div className="text-[11px] text-stone-400 font-mono mt-0.5">Primary: #3b76b3</div>
+                </div>
+              </div>
+              {(settings?.themeColor || 'blue') === 'blue' && (
+                <CheckCircle2 className="w-5 h-5 text-[#3b76b3]" />
+              )}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setSettings({ ...settings, themeColor: 'green' })}
+              className={`p-4 rounded-xl border text-right transition-all flex items-center justify-between ${
+                settings?.themeColor === 'green'
+                  ? 'bg-emerald-500/15 border-emerald-500 text-white shadow-lg shadow-emerald-500/10 ring-1 ring-emerald-500'
+                  : 'bg-[#101217] border-[#222630] text-stone-400 hover:text-stone-200 hover:border-stone-700'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[#16a34a] flex items-center justify-center text-white shadow-md font-bold text-xs">
+                  CGL
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-white">اللون الأخضر المعتمد</div>
+                  <div className="text-[11px] text-stone-400 font-mono mt-0.5">Primary: #16a34a</div>
+                </div>
+              </div>
+              {settings?.themeColor === 'green' && (
+                <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+              )}
+            </button>
+          </div>
+        </div>
+
         {/* Statistics Counters in Hero */}
         <div className="bg-[#15181e] border border-[#222630] rounded-2xl p-4 sm:p-6 space-y-4">
           <div className="flex items-center gap-2 pb-3 border-b border-[#222630] text-stone-100 font-bold text-sm">

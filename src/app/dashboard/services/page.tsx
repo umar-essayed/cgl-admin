@@ -29,6 +29,10 @@ export default function ServicesManagementPage() {
   const [saving, setSaving] = useState(false);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
+  const generateUniqueServiceId = () => {
+    return `srv-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
+  };
+
   const [formData, setFormData] = useState<any>({
     id: '',
     titleAr: '',
@@ -36,8 +40,10 @@ export default function ServicesManagementPage() {
     shortDescAr: '',
     shortDescEn: '',
     fullDescAr: '',
+    fullDescEn: '',
     standardsText: '',
     scopeText: '',
+    scopeTextEn: '',
     image: '',
     icon: 'Layers'
   });
@@ -64,14 +70,16 @@ export default function ServicesManagementPage() {
   const handleOpenAdd = () => {
     setIsEditing(false);
     setFormData({
-      id: `service-${Date.now()}`,
+      id: generateUniqueServiceId(),
       titleAr: '',
       titleEn: '',
       shortDescAr: '',
       shortDescEn: '',
       fullDescAr: '',
+      fullDescEn: '',
       standardsText: 'SBC 303, SBC 304, ASTM',
       scopeText: '',
+      scopeTextEn: '',
       image: '/uploads/user_provided/geotech_investigation.jpeg',
       icon: 'Layers'
     });
@@ -88,8 +96,10 @@ export default function ServicesManagementPage() {
       shortDescAr: service.shortDescAr || '',
       shortDescEn: service.shortDescEn || '',
       fullDescAr: service.fullDescAr || '',
+      fullDescEn: service.fullDescEn || '',
       standardsText: Array.isArray(service.standards) ? service.standards.join(', ') : '',
       scopeText: Array.isArray(service.scopeListAr) ? service.scopeListAr.join('\n') : '',
+      scopeTextEn: Array.isArray(service.scopeListEn) ? service.scopeListEn.join('\n') : '',
       image: service.image || '',
       icon: service.icon || 'Layers'
     });
@@ -103,17 +113,22 @@ export default function ServicesManagementPage() {
 
     try {
       const payload = {
-        id: formData.id,
+        id: formData.id || generateUniqueServiceId(),
         titleAr: formData.titleAr,
         titleEn: formData.titleEn,
         shortDescAr: formData.shortDescAr,
         shortDescEn: formData.shortDescEn,
         fullDescAr: formData.fullDescAr,
-        standards: formData.standardsText
+        fullDescEn: formData.fullDescEn || '',
+        standards: (formData.standardsText || '')
           .split(',')
           .map((s: string) => s.trim())
           .filter(Boolean),
-        scopeListAr: formData.scopeText
+        scopeListAr: (formData.scopeText || '')
+          .split('\n')
+          .map((s: string) => s.trim())
+          .filter(Boolean),
+        scopeListEn: (formData.scopeTextEn || '')
           .split('\n')
           .map((s: string) => s.trim())
           .filter(Boolean),
@@ -378,17 +393,24 @@ export default function ServicesManagementPage() {
               {activeTab === 'ar' && (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-xs text-stone-300 mb-1">
-                      معرف الخدمة (ID فريد) <span className="text-rose-400">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      disabled={isEditing}
-                      value={formData.id}
-                      onChange={(e) => setFormData({ ...formData, id: e.target.value })}
-                      required
-                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-stone-200 font-mono focus:outline-none focus:border-[#3b76b3] disabled:opacity-50"
-                    />
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-xs text-stone-300">
+                        معرف الخدمة التلقائي (Unique ID)
+                      </label>
+                      {!isEditing && (
+                        <button
+                          type="button"
+                          onClick={() => setFormData({ ...formData, id: generateUniqueServiceId() })}
+                          className="text-[10px] text-[#3b76b3] hover:underline"
+                        >
+                          توليد معرف جديد 🔄
+                        </button>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2 bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs font-mono text-stone-300">
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#3b76b3]/20 text-[#508ecb]">Auto-Generated</span>
+                      <span className="font-bold">{formData.id}</span>
+                    </div>
                   </div>
 
                   <div>
@@ -462,10 +484,36 @@ export default function ServicesManagementPage() {
                       Short Description (English)
                     </label>
                     <textarea
-                      rows={3}
+                      rows={2}
                       value={formData.shortDescEn}
                       onChange={(e) => setFormData({ ...formData, shortDescEn: e.target.value })}
                       placeholder="Brief highlight appearing on the service card..."
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white font-sans focus:outline-none focus:border-[#3b76b3]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs text-stone-300 mb-1 font-sans">
+                      Detailed Methodology & Scope (English)
+                    </label>
+                    <textarea
+                      rows={4}
+                      value={formData.fullDescEn}
+                      onChange={(e) => setFormData({ ...formData, fullDescEn: e.target.value })}
+                      placeholder="Comprehensive engineering methodology and technical scope..."
+                      className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white font-sans focus:outline-none focus:border-[#3b76b3]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs text-stone-300 mb-1 font-sans">
+                      Scope of Work & Deliverables (One item per line)
+                    </label>
+                    <textarea
+                      rows={4}
+                      value={formData.scopeTextEn}
+                      onChange={(e) => setFormData({ ...formData, scopeTextEn: e.target.value })}
+                      placeholder="Rotary drilling to depths of up to 50 meters&#10;Allowable bearing capacity analysis&#10;Certified geotechnical engineering dossier"
                       className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-white font-sans focus:outline-none focus:border-[#3b76b3]"
                     />
                   </div>

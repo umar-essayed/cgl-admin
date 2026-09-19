@@ -66,10 +66,13 @@ export default function EquipmentManagementPage() {
     fetchEquipment();
   }, []);
 
+  const generateUniqueEquipId = () => {
+    return `cgl-eq-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
+  };
+
   const openNewModal = () => {
-    const nextId = `equip-0${equipment.length + 1}`;
     setFormData({
-      id: nextId,
+      id: generateUniqueEquipId(),
       code: `CGL-EQ-${100 + equipment.length + 1}`,
       nameAr: '',
       nameEn: '',
@@ -521,17 +524,24 @@ export default function EquipmentManagementPage() {
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-medium text-stone-300 mb-1.5">
-                        المعرف الفريد (ID) *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        disabled={isEditing}
-                        value={formData.id}
-                        onChange={(e) => setFormData({ ...formData, id: e.target.value })}
-                        className="w-full bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs text-stone-200 font-mono disabled:opacity-50"
-                      />
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label className="text-xs font-medium text-stone-300">
+                          معرف الآلية التلقائي (Unique ID)
+                        </label>
+                        {!isEditing && (
+                          <button
+                            type="button"
+                            onClick={() => setFormData({ ...formData, id: generateUniqueEquipId() })}
+                            className="text-[10px] text-[#3b76b3] hover:underline"
+                          >
+                            توليد جديد 🔄
+                          </button>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2 bg-[#101217] border border-[#222630] rounded-xl px-3 py-2 text-xs font-mono text-stone-300">
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#3b76b3]/20 text-[#508ecb]">Auto-Generated</span>
+                        <span className="font-bold">{formData.id}</span>
+                      </div>
                     </div>
 
                     <div>
