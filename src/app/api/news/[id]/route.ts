@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getAdminFirestore } from '@/lib/firebaseAdmin';
 import { requireAuth } from '@/lib/apiAuth';
+import { triggerWebsiteRevalidation } from '@/lib/revalidateWebsite';
 
 export async function GET(
   request: Request,
@@ -33,13 +34,14 @@ export async function PUT(
     const db = getAdminFirestore();
     const docRef = db.collection('news').doc(id);
 
-    const updated = {
+    const updatedData = {
       ...body,
       updatedAt: new Date().toISOString()
     };
 
-    await docRef.set(updated, { merge: true });
-    return NextResponse.json({ success: true, data: { id, ...updated } });
+    await docRef.set(updatedData, { merge: true });
+    triggerWebsiteRevalidation();
+    return NextResponse.json({ success: true, data: { id, ...updatedData } });
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
@@ -57,7 +59,8 @@ export async function DELETE(
     const { id } = await params;
     const db = getAdminFirestore();
     await db.collection('news').doc(id).delete();
-    return NextResponse.json({ success: true, message: 'تم حذف المقال بنجاح' });
+    triggerWebsiteRevalidation();
+    return NextResponse.json({ success: true, message: 'تم حذف الخبر بنجاح' });
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }

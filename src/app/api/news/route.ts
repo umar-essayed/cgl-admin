@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getAdminFirestore } from '@/lib/firebaseAdmin';
 import { requireAuth } from '@/lib/apiAuth';
+import { triggerWebsiteRevalidation } from '@/lib/revalidateWebsite';
 
 export async function GET() {
   try {
@@ -21,7 +22,7 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     if (!body.id || !body.titleAr) {
-      return NextResponse.json({ success: false, message: 'معرف المقال وعنوانه مطلوبان' }, { status: 400 });
+      return NextResponse.json({ success: false, message: 'معرف الخبر وعنوانه بالعربية مطلوبان' }, { status: 400 });
     }
 
     const db = getAdminFirestore();
@@ -39,6 +40,7 @@ export async function POST(request: Request) {
     };
 
     await docRef.set(newItem);
+    triggerWebsiteRevalidation();
     return NextResponse.json({ success: true, data: newItem });
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });

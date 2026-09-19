@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getAdminFirestore } from '@/lib/firebaseAdmin';
 import { requireAuth } from '@/lib/apiAuth';
+import { triggerWebsiteRevalidation } from '@/lib/revalidateWebsite';
 
 export async function GET() {
   try {
@@ -40,6 +41,7 @@ export async function POST(request: Request) {
     };
 
     await docRef.set(newProject);
+    triggerWebsiteRevalidation();
     return NextResponse.json({ success: true, data: newProject });
   } catch (error: any) {
     console.error('Error creating project:', error);

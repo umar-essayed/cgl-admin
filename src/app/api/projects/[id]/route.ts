@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getAdminFirestore } from '@/lib/firebaseAdmin';
 import { requireAuth } from '@/lib/apiAuth';
+import { triggerWebsiteRevalidation } from '@/lib/revalidateWebsite';
 
 export async function GET(
   request: Request,
@@ -39,6 +40,7 @@ export async function PUT(
     };
 
     await docRef.set(updatedData, { merge: true });
+    triggerWebsiteRevalidation();
     return NextResponse.json({ success: true, data: { id, ...updatedData } });
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
@@ -57,6 +59,7 @@ export async function DELETE(
     const { id } = await params;
     const db = getAdminFirestore();
     await db.collection('projects').doc(id).delete();
+    triggerWebsiteRevalidation();
     return NextResponse.json({ success: true, message: 'تم حذف المشروع بنجاح' });
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
