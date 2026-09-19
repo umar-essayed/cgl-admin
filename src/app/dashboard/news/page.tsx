@@ -39,6 +39,11 @@ export default function NewsManagementPage() {
   const [articles, setArticles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [visibleCount, setVisibleCount] = useState(10);
+
+  useEffect(() => {
+    setVisibleCount(10);
+  }, [searchQuery]);
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -250,95 +255,134 @@ export default function NewsManagementPage() {
           لا توجد مقالات أو أخبار مطابقة لمعايير البحث
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredArticles.map((article) => (
-            <div
-              key={article.id}
-              className="bg-[#15181e] border border-[#222630] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-stone-600 transition-colors"
-            >
-              <div>
-                {/* Image Header */}
-                <div className="relative h-44 w-full bg-[#101217] overflow-hidden border-b border-[#222630]">
-                  <img
-                    src={article.image || article.coverImage || '/assets/sliders/slider1.jpg'}
-                    alt={article.titleAr}
-                    className="w-full h-full object-cover opacity-85"
-                    onError={(e: any) => {
-                      e.target.src = '/assets/sliders/slider1.jpg';
-                    }}
-                  />
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filteredArticles.slice(0, visibleCount).map((article) => (
+              <div
+                key={article.id}
+                className="bg-[#15181e] border border-[#222630] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-stone-600 transition-colors"
+              >
+                <div>
+                  {/* Image Header */}
+                  <div className="relative h-44 w-full bg-[#101217] overflow-hidden border-b border-[#222630]">
+                    <img
+                      src={article.image || article.coverImage || '/assets/sliders/slider1.jpg'}
+                      alt={article.titleAr}
+                      className="w-full h-full object-cover opacity-85"
+                      onError={(e: any) => {
+                        e.target.src = '/assets/sliders/slider1.jpg';
+                      }}
+                    />
 
-                  {/* Category Pill */}
-                  <div className="absolute top-3 right-3">
-                    <span className="px-2.5 py-1 rounded-lg bg-[#101217]/90 border border-[#2e3442] text-[10px] font-mono text-stone-300 font-semibold">
-                      {article.categoryAr}
-                    </span>
+                    {/* Category Pill */}
+                    <div className="absolute top-3 right-3">
+                      <span className="px-2.5 py-1 rounded-lg bg-[#101217]/90 border border-[#2e3442] text-[10px] font-mono text-stone-300 font-semibold">
+                        {article.categoryAr}
+                      </span>
+                    </div>
+
+                    {/* Featured Badge Button */}
+                    <button
+                      onClick={() => toggleFeatured(article)}
+                      className={`absolute top-3 left-3 p-1.5 rounded-lg backdrop-blur-md border transition-colors ${
+                        article.featured
+                          ? 'bg-amber-500/20 text-amber-400 border-amber-500/40'
+                          : 'bg-black/50 text-stone-400 border-white/10 hover:text-white'
+                      }`}
+                      title={article.featured ? 'خبر مميز' : 'تمييز كخبر رئيسي'}
+                    >
+                      <Star className={`w-3.5 h-3.5 ${article.featured ? 'fill-amber-400' : ''}`} />
+                    </button>
                   </div>
 
-                  {/* Featured Badge Button */}
-                  <button
-                    onClick={() => toggleFeatured(article)}
-                    className={`absolute top-3 left-3 p-1.5 rounded-lg backdrop-blur-md border transition-colors ${
-                      article.featured
-                        ? 'bg-amber-500/20 text-amber-400 border-amber-500/40'
-                        : 'bg-black/50 text-stone-400 border-white/10 hover:text-white'
-                    }`}
-                    title={article.featured ? 'خبر مميز' : 'تمييز كخبر رئيسي'}
-                  >
-                    <Star className={`w-3.5 h-3.5 ${article.featured ? 'fill-amber-400' : ''}`} />
-                  </button>
+                  {/* Article Info */}
+                  <div className="p-4 space-y-2.5">
+                    <div className="flex items-center gap-3 text-[10px] font-mono text-stone-400">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3 text-[#3b76b3]" />
+                        <span>{article.dateAr || article.date}</span>
+                      </span>
+                      <span>•</span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-[#3b76b3]" />
+                        <span>{article.readTimeAr || `${article.readMinutes || 3} دقائق قراءة`}</span>
+                      </span>
+                    </div>
+
+                    <h3 className="font-bold text-sm text-stone-100 line-clamp-2 leading-snug">
+                      {article.titleAr}
+                    </h3>
+
+                    <p className="text-xs text-stone-400 line-clamp-2 leading-relaxed">
+                      {article.excerptAr}
+                    </p>
+                  </div>
                 </div>
 
-                {/* Article Info */}
-                <div className="p-4 space-y-2.5">
-                  <div className="flex items-center gap-3 text-[10px] font-mono text-stone-400">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3 text-[#3b76b3]" />
-                      <span>{article.dateAr || article.date}</span>
-                    </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3 text-[#3b76b3]" />
-                      <span>{article.readTimeAr || `${article.readMinutes || 3} دقائق قراءة`}</span>
-                    </span>
+                {/* Actions Footer */}
+                <div className="p-4 pt-3 border-t border-[#222630] flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-mono text-[#3b76b3] bg-[#3b76b3]/10 px-2 py-0.5 rounded">
+                    ⏱️ {article.readMinutes || parseInt(article.readTimeAr) || 3} دقيقة قراءة
+                  </span>
+
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={() => openEditModal(article)}
+                      className="p-1.5 rounded-lg bg-[#1a1e26] hover:bg-[#252b37] text-stone-300 hover:text-white transition-colors border border-[#262b37]"
+                      title="تعديل المقال"
+                    >
+                      <Edit3 className="w-3.5 h-3.5" />
+                    </button>
+
+                    <button
+                      onClick={() => setDeleteConfirmId(article.id)}
+                      className="p-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-colors border border-rose-500/20"
+                      title="حذف المقال"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
                   </div>
-
-                  <h3 className="font-bold text-sm text-stone-100 line-clamp-2 leading-snug">
-                    {article.titleAr}
-                  </h3>
-
-                  <p className="text-xs text-stone-400 line-clamp-2 leading-relaxed">
-                    {article.excerptAr}
-                  </p>
                 </div>
               </div>
+            ))}
+          </div>
 
-              {/* Actions Footer */}
-              <div className="p-4 pt-3 border-t border-[#222630] flex items-center justify-between text-xs">
-                <span className="text-[11px] font-mono text-[#3b76b3] bg-[#3b76b3]/10 px-2 py-0.5 rounded">
-                  ⏱️ {article.readMinutes || parseInt(article.readTimeAr) || 3} دقيقة قراءة
-                </span>
-
-                <div className="flex items-center gap-1.5">
+          {/* Pagination Controls */}
+          {filteredArticles.length > 10 && (
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-[#15181e] rounded-2xl border border-[#222630]">
+              <div className="text-xs text-stone-300">
+                عرض <span className="text-white font-bold">{Math.min(visibleCount, filteredArticles.length)}</span> من أصل <span className="text-white font-bold">{filteredArticles.length}</span> مقال
+              </div>
+              <div className="flex items-center gap-2">
+                {visibleCount < filteredArticles.length ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => setVisibleCount((prev) => Math.min(prev + 10, filteredArticles.length))}
+                      className="px-4 py-2 rounded-xl bg-[#3b76b3] hover:bg-[#2a5b8c] text-white text-xs font-bold transition-all active:scale-95 shadow-sm"
+                    >
+                      تحميل باقي المقالات (متبقي {filteredArticles.length - visibleCount})
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setVisibleCount(filteredArticles.length)}
+                      className="px-3 py-2 rounded-xl bg-[#1a1e26] hover:bg-[#252b37] text-stone-300 hover:text-white text-xs font-medium border border-[#262b37] transition-colors"
+                    >
+                      عرض الكل
+                    </button>
+                  </>
+                ) : (
                   <button
-                    onClick={() => openEditModal(article)}
-                    className="p-1.5 rounded-lg bg-[#1a1e26] hover:bg-[#252b37] text-stone-300 hover:text-white transition-colors border border-[#262b37]"
-                    title="تعديل المقال"
+                    type="button"
+                    onClick={() => setVisibleCount(10)}
+                    className="px-3 py-2 rounded-xl bg-[#1a1e26] hover:bg-[#252b37] text-stone-400 hover:text-white text-xs font-medium border border-[#262b37] transition-colors"
                   >
-                    <Edit3 className="w-3.5 h-3.5" />
+                    طي القائمة (عرض 10 فقط)
                   </button>
-
-                  <button
-                    onClick={() => setDeleteConfirmId(article.id)}
-                    className="p-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-colors border border-rose-500/20"
-                    title="حذف المقال"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+                )}
               </div>
             </div>
-          ))}
+          )}
         </div>
       )}
 
