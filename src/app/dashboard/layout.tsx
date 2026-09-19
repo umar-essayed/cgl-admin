@@ -136,7 +136,7 @@ export default function DashboardLayout({
           </div>
           <div className="mt-2 text-[11px] text-stone-400 font-medium flex items-center justify-between">
             <span>{isRtl ? 'لوحة التحكم الإدارية CGL' : 'CGL Admin Portal'}</span>
-            <span className="w-2 h-2 rounded-full bg-[#3b76b3] animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
           </div>
         </div>
 
@@ -202,8 +202,8 @@ export default function DashboardLayout({
             </button>
 
             {/* System status */}
-            <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#181a21] border border-[#222630] text-[11px] text-stone-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3b76b3] animate-pulse" />
+            <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#181a21] border border-[#222630] text-[11px] text-stone-300">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)] animate-pulse" />
               <span>{isRtl ? 'النظام متصل' : 'System Online'}</span>
             </div>
 
