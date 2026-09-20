@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -48,6 +48,44 @@ export default function DashboardLayout({
   const [lang, setLang] = useState<'ar' | 'en'>('ar');
 
   const isRtl = lang === 'ar';
+
+  // Real-time Session Heartbeat (Every 60s and on tab focus)
+  useEffect(() => {
+    let isCancelled = false;
+
+    const checkSession = async () => {
+      try {
+        const res = await fetch('/api/auth/session', { cache: 'no-store' });
+        if (res.status === 401 || !res.ok) {
+          if (!isCancelled) {
+            router.push('/login?expired=1');
+          }
+        }
+      } catch {
+        // Network hiccup, do nothing
+      }
+    };
+
+    // Run check on mount
+    checkSession();
+
+    // Check periodically every 60 seconds
+    const interval = setInterval(checkSession, 60 * 1000);
+
+    // Check when user switches back to this tab
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        checkSession();
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    return () => {
+      isCancelled = true;
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+    };
+  }, [router]);
 
   const handleLogout = async () => {
     setLoggingOut(true);

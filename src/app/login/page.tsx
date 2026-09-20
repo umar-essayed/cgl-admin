@@ -1,12 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import { Mail, Lock, Eye, EyeOff, ArrowLeft, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, ArrowLeft, AlertCircle, CheckCircle2, Clock } from 'lucide-react';
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const isExpired = searchParams.get('expired') === '1';
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -36,7 +39,8 @@ export default function LoginPage() {
 
       setSuccess(true);
       setTimeout(() => {
-        router.push('/dashboard');
+        const redirectUrl = searchParams.get('redirect') || '/dashboard';
+        router.push(redirectUrl);
         router.refresh();
       }, 500);
     } catch {
@@ -69,6 +73,13 @@ export default function LoginPage() {
             <h2 className="text-sm font-semibold text-white">تسجيل الدخول</h2>
             <p className="text-xs text-stone-400 mt-0.5">أدخل بيانات الاعتماد للمتابعة</p>
           </div>
+
+          {isExpired && !error && !success && (
+            <div className="mb-5 p-3 rounded-xl bg-amber-500/10 border border-amber-500/25 text-amber-300 text-xs flex items-center gap-2">
+              <Clock className="w-4 h-4 flex-shrink-0 text-amber-400" />
+              <span>انتهت مدة الجلسة (ساعتان). يرجى إدخال اسم المستخدم وكلمة المرور لتسجيل الدخول مجدداً.</span>
+            </div>
+          )}
 
           {error && (
             <div className="mb-5 p-3 rounded-xl bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs flex items-center gap-2">
@@ -149,5 +160,13 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0d0f12]" />}>
+      <LoginForm />
+    </Suspense>
   );
 }

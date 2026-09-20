@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createSessionToken, hashPassword } from '@/lib/auth';
+import { createSessionToken, hashPassword, SESSION_MAX_AGE_SECONDS } from '@/lib/auth';
 import { getAdminFirestore } from '@/lib/firebaseAdmin';
 
 export async function POST(request: Request) {
@@ -93,7 +93,7 @@ export async function POST(request: Request) {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
-      maxAge: 7 * 24 * 60 * 60 // 7 days
+      maxAge: SESSION_MAX_AGE_SECONDS // 2 hours (7,200 seconds)
     });
 
     return response;
