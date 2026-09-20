@@ -12,7 +12,8 @@ import {
   ShieldCheck, 
   Building2,
   Globe2,
-  Clock
+  Clock,
+  Sun
 } from 'lucide-react';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
@@ -192,6 +193,54 @@ export default function SettingsPage() {
               {settings?.themeColor === 'green' && (
                 <CheckCircle2 className="w-5 h-5 text-emerald-400" />
               )}
+            </button>
+          </div>
+        </div>
+
+        {/* Light Mode Availability Switch */}
+        <div className="bg-[#15181e] border border-[#222630] rounded-2xl p-4 sm:p-6 space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-[#222630]">
+            <div className="flex items-center gap-2 text-stone-100 font-bold text-sm">
+              <Sun className="w-4 h-4 text-amber-400" />
+              <span>إتاحة الوضع الفاتح في واجهة الموقع (Light Mode Availability)</span>
+            </div>
+            <span className={`text-xs px-2.5 py-0.5 rounded-full font-medium ${
+              settings?.allowLightMode 
+                ? 'bg-amber-500/15 text-amber-300 border border-amber-500/30' 
+                : 'bg-stone-800 text-stone-400 border border-stone-700'
+            }`}>
+              {settings?.allowLightMode ? 'مُفعّل' : 'مُعطّل (الداكن فقط)'}
+            </span>
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-[#101217] border border-[#222630]">
+            <div>
+              <div className="text-xs font-bold text-stone-200">
+                {settings?.allowLightMode
+                  ? 'الوضع الفاتح متاح حالياً للزوار'
+                  : 'الوضع الداكن الفخم هو الحصري والافتراضي'}
+              </div>
+              <p className="text-[11px] text-stone-400 mt-1 max-w-xl leading-relaxed">
+                {settings?.allowLightMode
+                  ? 'يظهر زر التبديل (الشمس / القمر) في شريط التنقل بالموقع، ويمكن للزوار التبديل بحرية بين الثيم الفاتح والثيم الداكن.'
+                  : 'يتم إخفاء زر التبديل تماماً من الموقع، وفرض الثيم الداكن الفخم فقط على جميع المستخدمين حتى لو كان الزائر قد اختار الوضع الفاتح سابقاً.'}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setSettings({ ...settings, allowLightMode: !settings?.allowLightMode })}
+              className={`relative inline-flex h-7 w-14 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                settings?.allowLightMode ? 'bg-[#3b76b3]' : 'bg-stone-700'
+              }`}
+              role="switch"
+              aria-checked={Boolean(settings?.allowLightMode)}
+            >
+              <span
+                className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                  settings?.allowLightMode ? 'translate-x-7' : 'translate-x-0'
+                }`}
+              />
             </button>
           </div>
         </div>
