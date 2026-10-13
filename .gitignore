@@ -1,30 +1,68 @@
+# ========================================================
+# CGL Admin Operations Portal - Production .gitignore
+# ========================================================
+
 # Dependencies
 /node_modules
 /.pnp
 .pnp.js
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
 
-# Testing
-/coverage
-
-# Next.js
+# Next.js & Turbopack Build Outputs
 /.next/
 /out/
-
-# Production
 /build
+/dist
+.turbo
+.swc
 
-# Misc
-.DS_Store
+# Environment Files & Secret Credentials
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
 *.pem
+*firebase-adminsdk*.json
 
-# Debug
+# Logs & Debugging
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+*.log
 
-# Local env files
-.env*.local
-.env*
+# Testing & Coverage
+/coverage
+/.nyc_output
 
-# Vercel
+# Operating System & File System Artifacts
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# IDE & Editor Configurations
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Cloud & Deployment CLI Artifacts
 .vercel
+.serverless/
+
+# Temporary / Scratch Files
+*.tmp
+*.temp
+screencapture-*.png
